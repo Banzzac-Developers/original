@@ -31,14 +31,20 @@ export interface Modal {
   props: ModalProps;
 }
 
-export const isPopup = (modal: Modal): modal is { type: ModalType; props: IPopup } => {
+export const isPopup = (
+  modal: Modal,
+): modal is { type: ModalType; props: IPopup } => {
   return modal.type === "popup";
 };
 
-export const isFullScreen = (modal: Modal): modal is { type: ModalType; props: IFullScreen } => {
+export const isFullScreen = (
+  modal: Modal,
+): modal is { type: ModalType; props: IFullScreen } => {
   return modal.type === "fullscreen";
 };
 
-export const isTailModal = (modal: Modal): modal is { type: ModalType; props: DefaultModal } => {
+export const isTailModal = (
+  modal: Modal,
+): modal is { type: ModalType; props: DefaultModal } => {
   return modal.type === "tailModal";
 };
