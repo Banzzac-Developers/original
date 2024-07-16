@@ -1,12 +1,12 @@
 import { useRecoilValue } from "recoil";
 import styled from "@emotion/styled";
 
-import { modalState } from "@recoil/index";
-import useModal from "@hooks/common/useModal";
+import { modalState } from "@/recoil";
+import useModal from "@/hooks/common/useModal";
 import FullScreenModal from "./FullScreenModal";
 // import TailModal from "./TailModal";
 import Popup from "./Popup";
-import { isFullScreen, isPopup } from "@models/common";
+import { isFullScreen, isPopup } from "@/models";
 import { useEffect } from "react";
 
 export default function ModalRenderer() {
@@ -19,7 +19,7 @@ export default function ModalRenderer() {
     return () => {
       window.removeEventListener("popstate", clearModal);
     };
-  }, []);
+  }, [clearModal]);
 
   return (
     <Container>
@@ -27,13 +27,7 @@ export default function ModalRenderer() {
       {modals.map((modal) => {
         if (isPopup(modal)) {
           const { props, type } = modal;
-          return (
-            <Popup
-              key={type}
-              buttonProps={props.buttonProps}
-              contents={props.contents}
-            />
-          );
+          return <Popup key={type} buttonProps={props.buttonProps} contents={props.contents} />;
         }
         if (isFullScreen(modal))
           return (
