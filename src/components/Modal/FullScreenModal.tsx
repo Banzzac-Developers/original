@@ -1,6 +1,6 @@
-import SvgSelector from "@components/Svg/SvgSelector";
+import SvgSelector from "@/components/Svg/SvgSelector";
 import styled from "@emotion/styled";
-import useModal from "@hooks/common/useModal";
+import useModal from "@/hooks/common/useModal";
 
 type Props = {
   contents: React.ReactNode;

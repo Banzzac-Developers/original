@@ -1,3 +1,5 @@
+export * from "./modal";
+
 export type SvgIcon =
   | "chat"
   | "feed"
