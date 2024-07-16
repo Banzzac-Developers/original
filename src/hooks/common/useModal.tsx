@@ -13,7 +13,7 @@ export default function useModal() {
       setModal((prev) => [...prev, modalType]);
       lockScroll();
     },
-    [lockScroll, setModal]
+    [lockScroll, setModal],
   );
 
   const removeCurrentModal = useCallback(() => {

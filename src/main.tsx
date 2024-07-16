@@ -3,7 +3,12 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import "./styles/index.css";
 import { RecoilRoot } from "recoil";
-import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import { worker } from "./utils/msw/browser.ts";
@@ -12,8 +17,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<NotFound />} path="/" element={<App />}>
       <Route path="/login" element={<Login />} />
-    </Route>
-  )
+    </Route>,
+  ),
 );
 
 const enableMocking = async () => {
@@ -28,6 +33,6 @@ enableMocking().then(() =>
       <RecoilRoot>
         <RouterProvider router={router} />
       </RecoilRoot>
-    </React.StrictMode>
-  )
+    </React.StrictMode>,
+  ),
 );

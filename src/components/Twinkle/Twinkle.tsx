@@ -15,7 +15,13 @@ type Props = {
 };
 
 export default function Twinkle({ isClick = false, size = 23, avg }: Props) {
-  const [twinkle, setTwinkle] = useState<boolean[]>([false, false, false, false, false]);
+  const [twinkle, setTwinkle] = useState<boolean[]>([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
   useEffect(() => {
     const cnt: number = avg / 10;
@@ -53,18 +59,42 @@ export default function Twinkle({ isClick = false, size = 23, avg }: Props) {
                 }}
               >
                 {element ? (
-                  <SvgSelector svg="fillTwinkle" key={i} width={size} height={size} stroke="#212121" />
+                  <SvgSelector
+                    svg="fillTwinkle"
+                    key={i}
+                    width={size}
+                    height={size}
+                    stroke="#212121"
+                  />
                 ) : (
-                  <SvgSelector key={i} svg="twinkle" width={size} height={size} stroke="#212121" />
+                  <SvgSelector
+                    key={i}
+                    svg="twinkle"
+                    width={size}
+                    height={size}
+                    stroke="#212121"
+                  />
                 )}
               </Box>
             )}
             {!isClick && (
               <Box key={i}>
                 {element ? (
-                  <SvgSelector svg="fillTwinkle" key={i} width={size} height={size} stroke="#212121" />
+                  <SvgSelector
+                    svg="fillTwinkle"
+                    key={i}
+                    width={size}
+                    height={size}
+                    stroke="#212121"
+                  />
                 ) : (
-                  <SvgSelector key={i} svg="twinkle" width={size} height={size} stroke="#212121" />
+                  <SvgSelector
+                    key={i}
+                    svg="twinkle"
+                    width={size}
+                    height={size}
+                    stroke="#212121"
+                  />
                 )}
               </Box>
             )}
