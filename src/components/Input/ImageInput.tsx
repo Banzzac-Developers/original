@@ -1,5 +1,5 @@
-import { SingleProfileImage } from "@components/ProfileImage/ProfileImage";
-import Seperator from "@components/Seperator";
+import { SingleProfileImage } from "@/components/ProfileImage/ProfileImage";
+import Seperator from "@/components/Seperator";
 import styled from "@emotion/styled";
 
 type Props = {
