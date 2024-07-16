@@ -1,5 +1,5 @@
-import SvgSelector from "@components/Svg/SvgSelector";
-import { HeaderIcon } from "@models/index";
+import SvgSelector from "@/components/Svg/SvgSelector";
+import { HeaderIcon } from "@/models";
 
 const IconButton = ({
   icon,

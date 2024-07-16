@@ -1,4 +1,4 @@
-import RoundButton from "@components/Button/RoundButton";
+import RoundButton from "@/components/Button/RoundButton";
 import styled, { CSSObject } from "@emotion/styled";
 
 type Props = {
