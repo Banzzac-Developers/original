@@ -47,9 +47,18 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
     case "expandLeft":
       return <ExpandLeft width={width} height={height} stroke={stroke} />;
     case "expandUp":
-      return <ExpandUp width={width} height={height} fill={"none"} stroke={stroke} />;
+      return (
+        <ExpandUp width={width} height={height} fill={"none"} stroke={stroke} />
+      );
     case "expandDown":
-      return <ExpandDown width={width} height={height} fill={"none"} stroke={stroke} />;
+      return (
+        <ExpandDown
+          width={width}
+          height={height}
+          fill={"none"}
+          stroke={stroke}
+        />
+      );
     case "friends":
       return <Friends width={width} height={height} stroke={stroke} />;
     case "profile":
@@ -65,19 +74,32 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
     case "fillTwinkle":
       return <FillTwinkle width={width} height={height} stroke={stroke} />;
     case "payment":
-      return <Payment width={width} height={height} stroke={stroke} fill={stroke} />;
+      return (
+        <Payment width={width} height={height} stroke={stroke} fill={stroke} />
+      );
     case "paymentHistory":
       return <PaymentHistory width={width} height={height} stroke={stroke} />;
     case "dogFace":
-      return <Dogface width={width} height={height} stroke={stroke} fill={stroke} />;
+      return (
+        <Dogface width={width} height={height} stroke={stroke} fill={stroke} />
+      );
     case "face":
-      return <Face width={width} height={height} stroke={stroke} fill={stroke} />;
+      return (
+        <Face width={width} height={height} stroke={stroke} fill={stroke} />
+      );
     case "close":
       return <Close width={width} height={height} stroke={stroke} />;
     case "femail":
       return <Female width={width} height={height} />;
     case "filledPin":
-      return <FilledPin width={width} height={height} stroke={stroke} fill={stroke} />;
+      return (
+        <FilledPin
+          width={width}
+          height={height}
+          stroke={stroke}
+          fill={stroke}
+        />
+      );
     case "pin":
       return <Pin width={width} height={height} stroke={stroke} />;
     case "exit":
@@ -99,7 +121,14 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
     case "menu":
       return <Menu width={width} height={height} stroke={stroke} />;
     case "filledStar":
-      return <FilledStar width={width} height={height} stroke={stroke} fill={stroke} />;
+      return (
+        <FilledStar
+          width={width}
+          height={height}
+          stroke={stroke}
+          fill={stroke}
+        />
+      );
     case "sendButton":
       return <SendButton width={width} height={height} />;
     default:

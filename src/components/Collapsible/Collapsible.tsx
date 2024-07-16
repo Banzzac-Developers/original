@@ -25,18 +25,33 @@ export default function Collapsible({ dogProfile, contents }: Props) {
       {isOpen ? (
         <ContentsContainer>
           <ChevronButton onClick={toggleOpen}>
-            <SvgSelector svg={"expandUp"} width={24} height={24} stroke={"#212121"} />
+            <SvgSelector
+              svg={"expandUp"}
+              width={24}
+              height={24}
+              stroke={"#212121"}
+            />
           </ChevronButton>
           <div>{contents}</div>
         </ContentsContainer>
       ) : (
         <ProfileHeader>
           <ProfileWrapper>
-            <SingleProfileImage img={dogProfile.img} size={77} border={2} borderColor="#00000080" />
+            <SingleProfileImage
+              img={dogProfile.img}
+              size={77}
+              border={2}
+              borderColor="#00000080"
+            />
             {dogProfile.name}
           </ProfileWrapper>
           <button onClick={toggleOpen}>
-            <SvgSelector svg={"expandDown"} width={24} height={24} stroke={"#212121"} />
+            <SvgSelector
+              svg={"expandDown"}
+              width={24}
+              height={24}
+              stroke={"#212121"}
+            />
           </button>
         </ProfileHeader>
       )}

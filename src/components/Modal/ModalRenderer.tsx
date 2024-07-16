@@ -27,7 +27,13 @@ export default function ModalRenderer() {
       {modals.map((modal) => {
         if (isPopup(modal)) {
           const { props, type } = modal;
-          return <Popup key={type} buttonProps={props.buttonProps} contents={props.contents} />;
+          return (
+            <Popup
+              key={type}
+              buttonProps={props.buttonProps}
+              contents={props.contents}
+            />
+          );
         }
         if (isFullScreen(modal))
           return (
