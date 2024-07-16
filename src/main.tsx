@@ -6,6 +6,7 @@ import { RecoilRoot } from "recoil";
 import { createBrowserRouter, createRoutesFromElements, Route, RouterProvider } from "react-router-dom";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
+import { worker } from "./utils/msw/browser.ts";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -15,10 +16,18 @@ const router = createBrowserRouter(
   )
 );
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
-  <React.StrictMode>
-    <RecoilRoot>
-      <RouterProvider router={router} />
-    </RecoilRoot>
-  </React.StrictMode>
+const enableMocking = async () => {
+  if (import.meta.env.VITE_NODE_ENV === "mocking") {
+    await worker.start();
+  }
+};
+
+enableMocking().then(() =>
+  ReactDOM.createRoot(document.getElementById("root")!).render(
+    <React.StrictMode>
+      <RecoilRoot>
+        <RouterProvider router={router} />
+      </RecoilRoot>
+    </React.StrictMode>
+  )
 );
