@@ -12,11 +12,13 @@ import {
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import { worker } from "./utils/msw/browser.ts";
+import Friends from "./pages/Friends/index.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<NotFound />} path="/" element={<App />}>
       <Route path="/login" element={<Login />} />
+      <Route path="/friends" element={<Friends />} />
     </Route>,
   ),
 );

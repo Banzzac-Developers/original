@@ -32,3 +32,9 @@ export type SvgIcon =
   | "star"
   | "menu"
   | "sendButton";
+
+export type ResData = {
+  success : string,
+  error_code : ScrollSetting
+}
+
