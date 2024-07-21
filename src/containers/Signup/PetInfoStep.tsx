@@ -2,71 +2,98 @@ import SquareButton from "@/components/Button/SquareButton";
 import RoundHeader from "@/components/Header/RoundHeader";
 import InputDefault from "@/components/Input";
 import ButtonSelect from "@/components/Input/ButtonSelect";
+import ImageInput from "@/components/Input/ImageInput";
 import Seperator from "@/components/Seperator";
+import { PetInfo } from "@/models/signup";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 interface Props {
   onNext: () => void;
   onBefore: () => void;
+  petInfo: PetInfo;
+  setPetInfo: React.Dispatch<SetStateAction<PetInfo>>;
 }
 
-export default function PetInfo({ onNext, onBefore }: Props) {
-  const [age, setAge] = useState("");
-  const [name, setName] = useState("");
-  const [weight, setWeight] = useState("");
-  const [gender, setGender] = useState(-1);
-  const [neutralization, setNeutralization] = useState(-1);
-  const [size, setSize] = useState(-1);
-  const [breed, setBreed] = useState(-1);
-  const [personality, setPersonality] = useState<number[]>([]);
-  const [activity, setActivity] = useState(-1);
+export default function PetInfoStep({
+  onNext,
+  onBefore,
+  petInfo,
+  setPetInfo,
+}: Props) {
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  const handleChange = (
+    key: keyof PetInfo,
+    value: string | number | number[],
+  ) => {
+    setPetInfo((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      if (reader.error) {
+        alert("image upload error");
+      }
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+    }
+  };
 
   return (
     <>
       <RoundHeader icon="dogFace" description="반려견의 정보를 입력해주세요" />
       <Container>
         <div>
-          <div>사진</div>
+          <ImageInput
+            imgSrc={imagePreview}
+            onChangeImage={handleImageUpload}
+            label="사진"
+          />
           <InputDefault
             title="나이"
             id="age"
             placeholder="출생년도"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
+            value={petInfo.age}
+            onChange={(e) => handleChange("age", e.target.value)}
           />
           <Seperator height={24} />
           <InputDefault
             title="이름"
             placeholder="직접입력"
             id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            value={petInfo.name}
+            onChange={(e) => handleChange("name", e.target.value)}
           />
           <Seperator height={24} />
           <InputDefault
             title="몸무게"
             placeholder="직접입력"
             id="weight"
-            value={weight}
-            onChange={(e) => setWeight(e.target.value)}
+            value={petInfo.weight}
+            onChange={(e) => handleChange("weight", e.target.value)}
           />
           <Seperator height={24} />
           <ButtonSelection
             label="성별"
             buttonList={["남자", "여자"]}
-            value={[gender]}
-            onChangeButton={(idxArr) => setGender(idxArr[0])}
+            value={[petInfo.gender]}
+            onChangeButton={(idxArr) => handleChange("gender", idxArr[0])}
             isDuplicate={false}
             maxSelection={1}
           />
           <Seperator height={24} />
-
           <ButtonSelection
             label="중성화"
             buttonList={["네", "아니요"]}
-            value={[neutralization]}
-            onChangeButton={(idxArr) => setNeutralization(idxArr[0])}
+            value={[petInfo.neutralization]}
+            onChangeButton={(idxArr) =>
+              handleChange("neutralization", idxArr[0])
+            }
             isDuplicate={false}
             maxSelection={1}
           />
@@ -75,8 +102,8 @@ export default function PetInfo({ onNext, onBefore }: Props) {
             gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
             label="크기"
             buttonList={["소형", "중형", "대형"]}
-            value={[size]}
-            onChangeButton={(idxArr) => setSize(idxArr[0])}
+            value={[petInfo.size]}
+            onChangeButton={(idxArr) => handleChange("size", idxArr[0])}
             isDuplicate={false}
             maxSelection={1}
           />
@@ -98,8 +125,8 @@ export default function PetInfo({ onNext, onBefore }: Props) {
               "진돗개",
               "비글",
             ]}
-            value={[breed]}
-            onChangeButton={(idxArr) => setBreed(idxArr[0])}
+            value={[petInfo.breed]}
+            onChangeButton={(idxArr) => handleChange("breed", idxArr[0])}
             isDuplicate={false}
             maxSelection={1}
           />
@@ -118,8 +145,8 @@ export default function PetInfo({ onNext, onBefore }: Props) {
               "얌전한",
               "샤이한",
             ]}
-            value={personality}
-            onChangeButton={(idxArr) => setPersonality(idxArr)}
+            value={petInfo.personality}
+            onChangeButton={(idxArr) => handleChange("personality", idxArr)}
             isDuplicate
             maxSelection={6}
           />
@@ -128,8 +155,8 @@ export default function PetInfo({ onNext, onBefore }: Props) {
             gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
             label="활동량"
             buttonList={["적음", "보통", "많음"]}
-            value={[activity]}
-            onChangeButton={(idxArr) => setActivity(idxArr[0])}
+            value={[petInfo.activity]}
+            onChangeButton={(idxArr) => handleChange("activity", idxArr[0])}
             isDuplicate={false}
             maxSelection={1}
           />

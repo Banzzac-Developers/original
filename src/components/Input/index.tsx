@@ -18,7 +18,7 @@ export default function InputDefault({
   return (
     <Container>
       <Label htmlFor={id}>{title}</Label>
-      <InputItem
+      <Input
         value={value}
         onChange={onChange}
         type="text"
@@ -41,11 +41,19 @@ const Label = styled.label`
   font-weight: 700;
   line-height: 24px;
   color: #212121;
+  margin-bottom: 3px;
 `;
 
-const InputItem = styled.input`
+const Input = styled.input`
   border: none;
   border-bottom: 1px solid #757575;
   line-height: 22px;
   font-size: 14px;
+  color: #212121;
+  &:focus {
+    border-color: #212121;
+  }
+  &::placeholder {
+    color: #757575;
+  }
 `;

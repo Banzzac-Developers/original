@@ -1,26 +1,55 @@
 import SquareButton from "@/components/Button/SquareButton";
 import RoundHeader from "@/components/Header/RoundHeader";
 import ButtonSelect from "@/components/Input/ButtonSelect";
+import ImageInput from "@/components/Input/ImageInput";
 import Seperator from "@/components/Seperator";
+import { ProfileInfo } from "@/models/signup";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 
 interface Props {
   onNext: () => void;
   onBefore: () => void;
+  profileInfo: ProfileInfo;
+  setProfileInfo: React.Dispatch<SetStateAction<ProfileInfo>>;
 }
 
-export default function PersonInfo({ onNext, onBefore }: Props) {
-  const [mbti, setMbti] = useState<number[]>([]);
-  const [walkingStyle, setWalkingStyle] = useState<number[]>([]);
+export default function ProfileInfoStep({
+  onNext,
+  onBefore,
+  setProfileInfo,
+  profileInfo,
+}: Props) {
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  const handleChange = (key: keyof ProfileInfo, value: number[]) => {
+    setProfileInfo((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      if (reader.error) {
+        alert("image upload error");
+      }
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+    }
+  };
 
   return (
     <>
       <RoundHeader icon="face" description="보호자의 정보를 입력해주세요" />
       <Container>
         <div>
-          <label>사진</label>
-          <img />
+          <ImageInput
+            imgSrc={imagePreview}
+            onChangeImage={handleImageUpload}
+            label="사진"
+          />
           <ButtonSelection
             gridStyle={{
               gridTemplateColumns: "repeat(4, 1fr)",
@@ -30,8 +59,8 @@ export default function PersonInfo({ onNext, onBefore }: Props) {
             label="mbti"
             buttonList={["E", "S", "F", "J", "I", "N", "T", "P"]}
             isDuplicate
-            value={mbti}
-            onChangeButton={(idxArr) => setMbti(idxArr)}
+            value={profileInfo.mbti}
+            onChangeButton={(idxArr) => handleChange("mbti", idxArr)}
           />
           <Seperator height={48} />
           <ButtonSelection
@@ -46,8 +75,8 @@ export default function PersonInfo({ onNext, onBefore }: Props) {
             ]}
             maxSelection={5}
             label="산책 스타일"
-            value={walkingStyle}
-            onChangeButton={(idxArr) => setWalkingStyle(idxArr)}
+            value={profileInfo.walkingStyle}
+            onChangeButton={(idxArr) => handleChange("walkingStyle", idxArr)}
           />
         </div>
         <ButtonContainer>
