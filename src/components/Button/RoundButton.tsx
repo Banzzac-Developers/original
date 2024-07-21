@@ -22,7 +22,7 @@ export default function RoundButton({
     <StyledButton
       onClick={onClick}
       active={active}
-      fill={fill}
+      isFill={fill}
       backgroundColor={backgroundColor}
     >
       {title}
@@ -31,7 +31,7 @@ export default function RoundButton({
 }
 
 const StyledButton = styled.button<{
-  fill: boolean;
+  isFill: boolean;
   backgroundColor: string;
   active: boolean;
 }>`
@@ -47,7 +47,8 @@ const StyledButton = styled.button<{
   line-height: 24px;
   border-radius: 22px;
   border: ${({ active }) => (active ? "2px solid" : "1px solid")};
-  background-color: ${({ fill, backgroundColor }) =>
-    fill ? backgroundColor : "#FFFFFF"};
-  color: ${({ fill, backgroundColor }) => (fill ? "#FFFFFF" : backgroundColor)};
+  background-color: ${({ isFill, backgroundColor }) =>
+    isFill ? backgroundColor : "#FFFFFF"};
+  color: ${({ isFill, backgroundColor }) =>
+    isFill ? "#FFFFFF" : backgroundColor};
 `;
