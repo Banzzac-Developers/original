@@ -27,6 +27,7 @@ export const DefaultButton: Story = {
     title: "button",
     fill: false,
     backgroundColor: "black",
+    onClick: () => {},
   },
 };
 
@@ -35,6 +36,7 @@ export const FilledButton: Story = {
     title: "filled button",
     fill: true,
     backgroundColor: "gray",
+    onClick: () => {},
   },
 };
 
@@ -43,5 +45,6 @@ export const LongTxtButton: Story = {
     title: "longlonglonglonglonglonglonglonglonglonglonglonglongtxt",
     fill: false,
     backgroundColor: "red",
+    onClick: () => {},
   },
 };

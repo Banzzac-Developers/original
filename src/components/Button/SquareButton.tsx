@@ -22,7 +22,7 @@ export default function SquareButton({
     <StyledButton
       className={className}
       active={active}
-      fill={fill}
+      isFill={fill}
       backgroundColor={backgroundColor}
       onClick={onClick}
     >
@@ -32,7 +32,7 @@ export default function SquareButton({
 }
 
 const StyledButton = styled.button<{
-  fill: boolean;
+  isFill: boolean;
   backgroundColor: string;
   active: boolean;
 }>`
@@ -46,7 +46,8 @@ const StyledButton = styled.button<{
   align-items: center;
   border-radius: 8px;
   border: ${({ active }) => (active ? "2px solid" : "1px solid")};
-  background-color: ${({ fill, backgroundColor }) =>
-    fill ? backgroundColor : "#FFFFFF"};
-  color: ${({ fill, backgroundColor }) => (fill ? "#FFFFFF" : backgroundColor)};
+  background-color: ${({ isFill, backgroundColor }) =>
+    isFill ? backgroundColor : "#FFFFFF"};
+  color: ${({ isFill, backgroundColor }) =>
+    isFill ? "#FFFFFF" : backgroundColor};
 `;
