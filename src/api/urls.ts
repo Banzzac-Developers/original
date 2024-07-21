@@ -18,17 +18,8 @@ const URLs = {
     fetchRefund: "/api/payment/refund",
   },
   friends: {
-    fetchFriendList: `/api/friend/list`,
-    deleteFriend: (friendId: string) => `/api/friend/delete/${friendId}`,
-    fetchFavoriteFriendList: `/api/friend/favoriteList`,
-    addFavoriteFriend: (friendId: string) =>
-      `/api/friend/friendFavorite/${friendId}`,
-    deleteFavoriteFriend: (friendId: string) =>
-      `/api/friend/friendUnFavorite/${friendId}`,
-    fetchBlockFriendList: `/api/friend/blockList`,
-    addBlockFriend: (friendId: string) => `/api/friend/friendBlock/${friendId}`,
-    deleteBlockFriend: (friendId: string) =>
-      `/api/friend/friendUnBlock/${friendId}`,
+    fetchFriendList : "/api/profile/friend/list",
+    
   },
   signup: {
     registUser: "/api/member/createMember",
