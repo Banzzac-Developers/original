@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DoubleProfileImage } from "./ProfileImage";
-import Mangu from "@assets/images/mangu.jpg";
-import Mangu2 from "@assets/images/mangu2.jpg";
+// import Mangu from "@assets/images/mangu.jpg";
+// import Mangu2 from "@assets/images/mangu2.jpg";
 
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -29,7 +29,7 @@ export const DefaultDoubleImage: Story = {
     size: 80,
     border: 3,
     left: 60,
-    img: Mangu,
-    img2: Mangu2,
+    img: "",
+    img2: "",
   },
 };
