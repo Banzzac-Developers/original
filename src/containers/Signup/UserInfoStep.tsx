@@ -2,18 +2,23 @@ import SquareButton from "@/components/Button/SquareButton";
 import InputDefault from "@/components/Input";
 import ButtonSelect from "@/components/Input/ButtonSelect";
 import Seperator from "@/components/Seperator";
+import { UserInfo } from "@/models/signup";
 import styled from "@emotion/styled";
-import { useState } from "react";
+import { SetStateAction } from "react";
 
 interface Props {
   onNext: () => void;
+  userInfo: UserInfo;
+  setUserInfo: React.Dispatch<SetStateAction<UserInfo>>;
 }
 
-export default function EmailInfo({ onNext }: Props) {
-  const [email, setEmail] = useState("");
-  const [nickname, setNickname] = useState("");
-  const [sex, setSex] = useState(-1);
-  const [age, setAge] = useState("");
+export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
+  const handleChange = (
+    key: keyof UserInfo,
+    value: string | number | number[],
+  ) => {
+    setUserInfo((prev) => ({ ...prev, [key]: value }));
+  };
 
   return (
     <Container>
@@ -21,16 +26,16 @@ export default function EmailInfo({ onNext }: Props) {
         <Title>회원가입</Title>
         <Seperator height={50} />
         <InputDefault
-          onChange={(e) => setEmail(e.target.value)}
-          value={email}
+          onChange={(e) => handleChange("email", e.target.value)}
+          value={userInfo.email}
           title="이메일"
           placeholder="banzzac@gmail.com"
           id="email"
         />
         <Seperator height={28} />
         <InputDefault
-          onChange={(e) => setNickname(e.target.value)}
-          value={nickname}
+          onChange={(e) => handleChange("nickname", e.target.value)}
+          value={userInfo.nickname}
           title="닉네임"
           placeholder="8~30자리 영문"
           id="nickname"
@@ -41,13 +46,13 @@ export default function EmailInfo({ onNext }: Props) {
           buttonList={["남자", "여자"]}
           isDuplicate={false}
           maxSelection={1}
-          onChangeButton={(idxArr) => setSex(idxArr[0])}
-          value={[sex]}
+          onChangeButton={(idxArr) => handleChange("gender", idxArr[0])}
+          value={[userInfo.gender]}
         />
         <Seperator height={28} />
         <InputDefault
-          onChange={(e) => setAge(e.target.value)}
-          value={age}
+          onChange={(e) => handleChange("age", e.target.value)}
+          value={userInfo.age}
           title="나이"
           placeholder="출생년도"
           id="age"
