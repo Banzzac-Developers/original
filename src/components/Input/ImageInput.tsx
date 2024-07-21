@@ -3,7 +3,7 @@ import styled from "@emotion/styled";
 import { useRef } from "react";
 import SvgSelector from "../Svg/SvgSelector";
 
-type Props = {
+export type Props = {
   label: string;
   onChangeImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   imgSrc: string | null;
