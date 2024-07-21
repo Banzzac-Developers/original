@@ -35,6 +35,7 @@ export type SvgIcon =
 
 export type ResData = {
   success : string,
-  error_code : ScrollSetting
+  message : string,
+  error_code : string
 }
 
