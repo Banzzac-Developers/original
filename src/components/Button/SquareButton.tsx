@@ -7,6 +7,7 @@ type Props = {
   backgroundColor: string;
   onClick: () => void;
   active?: boolean;
+  className?: string;
 };
 
 export default function SquareButton({
@@ -15,9 +16,11 @@ export default function SquareButton({
   backgroundColor,
   active = false,
   onClick,
+  className,
 }: Props) {
   return (
     <StyledButton
+      className={className}
       active={active}
       fill={fill}
       backgroundColor={backgroundColor}
