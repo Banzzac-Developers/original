@@ -3,7 +3,12 @@ import UserInfoStep from "./UserInfoStep";
 import ProfileInfoStep from "./ProfileInfoStep";
 import PetInfoStep from "./PetInfoStep";
 import CompleteStep from "./CompleteStep";
-import { PetInfo, ProfileInfo, UserInfo } from "@/models/signup";
+import {
+  defaultPetInfo,
+  PetInfo,
+  ProfileInfo,
+  UserInfo,
+} from "@/models/signup";
 
 type Step = "user" | "profile" | "pet" | "final";
 
@@ -19,17 +24,7 @@ export default function SignupFunnel() {
     mbti: [],
     walkingStyle: [],
   });
-  const [petInfo, setPetInfo] = useState<PetInfo>({
-    age: "",
-    name: "",
-    weight: "",
-    gender: -1,
-    neutralization: -1,
-    size: -1,
-    breed: -1,
-    personality: [],
-    activity: -1,
-  });
+  const [petInfos, setPetInfos] = useState<PetInfo[]>([defaultPetInfo]);
 
   const scrollTop = () => {
     window.scrollTo({ top: 0 });
@@ -59,8 +54,8 @@ export default function SignupFunnel() {
       )}
       {step === "pet" && (
         <PetInfoStep
-          petInfo={petInfo}
-          setPetInfo={setPetInfo}
+          petInfos={petInfos}
+          setPetInfos={setPetInfos}
           onBefore={() => handleStep("profile")}
           onNext={() => handleStep("final")}
         />

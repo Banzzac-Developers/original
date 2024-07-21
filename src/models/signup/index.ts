@@ -21,3 +21,15 @@ export interface PetInfo {
   personality: number[];
   activity: number;
 }
+
+export const defaultPetInfo = {
+  age: "",
+  name: "",
+  weight: "",
+  gender: -1,
+  neutralization: -1,
+  size: -1,
+  breed: -1,
+  personality: [],
+  activity: -1,
+};
