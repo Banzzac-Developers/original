@@ -1,4 +1,5 @@
 import SquareButton from "@/components/Button/SquareButton";
+import RoundHeader from "@/components/Header/RoundHeader";
 import ButtonSelect from "@/components/Input/ButtonSelect";
 import Seperator from "@/components/Seperator";
 import styled from "@emotion/styled";
@@ -14,51 +15,57 @@ export default function PersonInfo({ onNext, onBefore }: Props) {
   const [walkingStyle, setWalkingStyle] = useState<number[]>([]);
 
   return (
-    <Container>
-      <div>
-        <label>사진</label>
-        <img />
-        <ButtonSelection
-          gridStyle={{ gridTemplateColumns: "repeat(4, 1fr)", gap: "8px 4px" }}
-          maxSelection={4}
-          label="mbti"
-          buttonList={["E", "S", "F", "J", "I", "N", "T", "P"]}
-          isDuplicate
-          value={mbti}
-          onChangeButton={(idxArr) => setMbti(idxArr)}
-        />
-        <Seperator height={48} />
-        <ButtonSelection
-          gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
-          isDuplicate
-          buttonList={[
-            "많이 걷는",
-            "앉아서 쉬는",
-            "대화를 하는",
-            "대화가 적은",
-            "산책이 능숙한",
-          ]}
-          maxSelection={5}
-          label="산책 스타일"
-          value={walkingStyle}
-          onChangeButton={(idxArr) => setWalkingStyle(idxArr)}
-        />
-      </div>
-      <ButtonContainer>
-        <SquareButton
-          title={"이전"}
-          onClick={onBefore}
-          fill={false}
-          backgroundColor="#212121"
-        />
-        <SquareButton
-          title={"다음"}
-          fill
-          backgroundColor="#212121"
-          onClick={onNext}
-        />
-      </ButtonContainer>
-    </Container>
+    <>
+      <RoundHeader icon="face" description="보호자의 정보를 입력해주세요" />
+      <Container>
+        <div>
+          <label>사진</label>
+          <img />
+          <ButtonSelection
+            gridStyle={{
+              gridTemplateColumns: "repeat(4, 1fr)",
+              gap: "8px 4px",
+            }}
+            maxSelection={4}
+            label="mbti"
+            buttonList={["E", "S", "F", "J", "I", "N", "T", "P"]}
+            isDuplicate
+            value={mbti}
+            onChangeButton={(idxArr) => setMbti(idxArr)}
+          />
+          <Seperator height={48} />
+          <ButtonSelection
+            gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
+            isDuplicate
+            buttonList={[
+              "많이 걷는",
+              "앉아서 쉬는",
+              "대화를 하는",
+              "대화가 적은",
+              "산책이 능숙한",
+            ]}
+            maxSelection={5}
+            label="산책 스타일"
+            value={walkingStyle}
+            onChangeButton={(idxArr) => setWalkingStyle(idxArr)}
+          />
+        </div>
+        <ButtonContainer>
+          <SquareButton
+            title={"이전"}
+            onClick={onBefore}
+            fill={false}
+            backgroundColor="#212121"
+          />
+          <SquareButton
+            title={"다음"}
+            fill
+            backgroundColor="#212121"
+            onClick={onNext}
+          />
+        </ButtonContainer>
+      </Container>
+    </>
   );
 }
 
