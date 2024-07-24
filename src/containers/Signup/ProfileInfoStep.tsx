@@ -100,7 +100,7 @@ export default function ProfileInfoStep({
 
 const Container = styled.div`
   padding: 62px 24px;
-  min-height: 100%;
+  min-height: calc(100% - 100px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
