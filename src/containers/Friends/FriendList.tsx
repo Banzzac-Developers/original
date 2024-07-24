@@ -18,7 +18,7 @@ export const FrinedsList = ({friendList}:Props) =>{
     return (<Container>
         <SubTitle>친구</SubTitle>
         <Ul>
-            {friendList.map((friend,idx)=>(
+            {friendList?.map((friend,idx)=>(
                 <p key={idx}>{friend.nick_name}</p>
             ))}
         </Ul>
