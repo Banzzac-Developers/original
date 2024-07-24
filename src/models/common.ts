@@ -34,7 +34,7 @@ export type SvgIcon =
   | "sendButton";
 
 export type ResData = {
-  success : string,
+  result : string,
   message : string,
   error_code : string
 }

@@ -1,3 +1,4 @@
+import URLs from "@/api/urls";
 import { FrinedsList } from "@/containers/Friends/FriendList";
 import useFriendList from "@/hooks/friends/useFriendList";
 import { frinedListState } from "@/recoil/friends";
@@ -8,6 +9,7 @@ export default function Friends(){
     const friendList = useRecoilValue(frinedListState);
     
     console.log(friendList);
+    console.log(URLs.friends.fetchFriendList);
     
 
     return <FrinedsList friendList={friendList} />

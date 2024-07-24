@@ -10,11 +10,12 @@ export default function useFriendList(){
 
     const fetchFrinedList = useCallback(async ()=>{
         const result : UserInfoListData = await API.get(URLs.friends.fetchFriendList);
-        setFriendList(result.resData);
+        setFriendList(result.data);
     },[]);
 
     useEffect(()=>{
         fetchFrinedList();
+        console.log("셋타임아웃");
     },[])
     
     return friendList;
