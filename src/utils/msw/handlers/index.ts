@@ -13,13 +13,11 @@ export default [
       "result": "SUCCESS",
       "data": {
           "user_info_list": [
-              {
-                  "user_id": "3260305274",
-                  "nick_name": "test3",
-                  "profile_img_url": "https://img-data-bucket.s3.ap-northeast-2.amazonaws.com/human_profile/3260305274",
-                  "pet_name": "bababa",
-                  "pet_img_url": "aaaa"
-              }
+            FriendInfo,
+            FriendInfo,
+            FriendInfo,
+            FriendInfo,
+            FriendInfo
           ]
       },
       "message": "친구 리스트 획득에 성공하였습니다.",
@@ -27,3 +25,12 @@ export default [
   })}
   )
 ];
+
+
+const FriendInfo ={
+  "user_id": "3260305274",
+  "nick_name": "후시구로 메구미",
+  "profile_img_url": undefined,
+  "pet_name": "안녕토끼",
+  "pet_img_url": undefined
+}
