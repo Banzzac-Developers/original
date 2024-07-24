@@ -1,39 +1,50 @@
-/*  1. 더블 프로필 이미지
-    2. 친구 이름 | 강아지 이름
-    3. 친구 상태 메세지
-    4. 슬라이드 시 차단하기 버튼 ON
+/*  해야 할 것
+    1. 친구가 없을 경우 친구를 추가해보세요를 친구 서브 타이틀은 존재하되 그 밑에 이쁘게 나오도록 만들 것 
    */
 
+import Text from "@/components/Text";
 import { UserInfoList } from "@/models/friends";
+import { FontStyle } from "@/utils/StyleUtil";
 import styled from "@emotion/styled"
+import FriendCard from "./FriendCard";
 
 
 type Props = {
-    friendList : UserInfoList[];
+    friendList?: UserInfoList[];
 }
 
 export const FrinedsList = ({friendList}:Props) =>{
+    
+    if (friendList === undefined)
+        return <h4>친구를 추가해보세요</h4>
 
-
-    return (<Container>
-        <SubTitle>친구</SubTitle>
-        <Ul>
-            {friendList?.map((friend,idx)=>(
-                <p key={idx}>{friend.nick_name}</p>
+    return (
+    <Container>
+        <StyledText
+            {...FontStyle(14, 700, 20, "#9e9e9e")}>
+                {`친구 ${friendList.length}`}
+        </StyledText>
+        <Wrapper>
+            {friendList.map((friend, idx)=>(
+                <li key={idx}>
+                    <FriendCard {...friend}/>
+                </li>
             ))}
-        </Ul>
-    </Container>)
+        </Wrapper>
+    </Container>
+    )
 }
 
-const Container = styled.div`
-    
+const Container = styled.ul`
+    padding: 0 20px 0 24px;
 `;
 
-const SubTitle = styled.h6`
-    padding : 0px 10px;
-`
+const StyledText = styled(Text)`
+  padding: 8px 0;
+`;
 
-const Ul = styled.ul`
-
-`
-
+const Wrapper = styled.ul`
+  li {
+    padding: 8px 0;
+  }
+`;
