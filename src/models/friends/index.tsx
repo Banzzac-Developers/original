@@ -9,5 +9,5 @@ export type UserInfoList = {
 }
 
 export interface UserInfoListData extends ResData{
-    data : UserInfoList[];
+    data : {user_info_list : UserInfoList[]};
 }
