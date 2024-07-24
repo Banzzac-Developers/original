@@ -8,7 +8,8 @@ export default [
   }),
   // 친구 리스트
   http.get(URLs.friends.fetchFriendList,
-    ()=> HttpResponse.json({
+    ()=> {
+      return HttpResponse.json({
       "result": "SUCCESS",
       "data": {
           "user_info_list": [
@@ -23,6 +24,6 @@ export default [
       },
       "message": "친구 리스트 획득에 성공하였습니다.",
       "error_code": null
-  })
+  })}
   )
 ];
