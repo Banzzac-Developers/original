@@ -52,16 +52,16 @@ export const ProfileImg =styled.div<{width?:string}>`
     width: ${({width}) => width || "96px"};
 `
 
-const Infomations = styled.div`
+export const Infomations = styled.div`
 `
 
-const Namse = styled.h4`
+export const Namse = styled.h4`
     font-size: 14px;
     font-weight: 550;
     line-height: 22px;
 `
 
-const StatusMsg = styled.p`
+export const StatusMsg = styled.p`
     font-size: 12px;
     color: #757575;
     line-height: 20px;
