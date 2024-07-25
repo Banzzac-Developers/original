@@ -30,10 +30,7 @@ const URLs = {
     deleteBlockFriend: (friendId: string) =>
       `/api/friend/friendUnBlock/${friendId}`,
   },
-  signup: {
-    registUser: "/api/member/createMember",
-    registPet: (id: string) => `/api/member/createDog/${id}`,
-  },
+  signup: "/api/profile/sign-up",
   matching: {
     fetchCondition: "api/matching/condition",
   },
