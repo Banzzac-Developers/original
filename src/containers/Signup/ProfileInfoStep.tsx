@@ -6,7 +6,7 @@ import Seperator from "@/components/Seperator";
 import { MBTI, WALKING_STYLE } from "@/constants";
 import { ProfileInfo } from "@/models/signup";
 import styled from "@emotion/styled";
-import { SetStateAction, useState } from "react";
+import { SetStateAction } from "react";
 
 interface Props {
   onNext: () => void;
@@ -21,24 +21,12 @@ export default function ProfileInfoStep({
   setProfileInfo,
   profileInfo,
 }: Props) {
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-
   const handleChange = (key: keyof ProfileInfo, value: number | number[]) => {
     setProfileInfo((prev) => ({ ...prev, [key]: value }));
   };
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      if (reader.error) {
-        alert("image upload error");
-      }
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-    }
+  const handleChangeImage = (image: File | undefined) => {
+    setProfileInfo((prev) => ({ ...prev, profileImage: image }));
   };
 
   return (
@@ -46,11 +34,7 @@ export default function ProfileInfoStep({
       <RoundHeader icon="face" description="보호자의 정보를 입력해주세요" />
       <Container>
         <div>
-          <ImageInput
-            imgSrc={imagePreview}
-            onChangeImage={handleImageUpload}
-            label="사진"
-          />
+          <ImageInput onChangeImage={handleChangeImage} label="사진" />
           <ButtonSelection
             gridStyle={{
               gridTemplateColumns: "repeat(4, 1fr)",

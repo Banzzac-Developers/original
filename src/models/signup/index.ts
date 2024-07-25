@@ -21,6 +21,7 @@ export const defaultUserInfo = {
 };
 
 export interface ProfileInfo {
+  profileImage?: File;
   mbti: number[];
   walkingStyle: number;
 }
@@ -35,6 +36,7 @@ export interface PetInfo {
   breed: number;
   personality: number[];
   activity: number;
+  petImage?: string;
 }
 
 export const defaultPetInfo = {
@@ -84,6 +86,6 @@ export interface SignupSchema {
     pet_introduction?: string; // max-length 50
     activity_rate: ActivityRate;
     img_delete_flag: "N";
-    target_img_name: string;
+    target_img_name: string | null;
   }[];
 }

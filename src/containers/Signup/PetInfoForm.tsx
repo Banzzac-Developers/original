@@ -3,7 +3,7 @@ import ImageInput from "@/components/Input/ImageInput";
 import Seperator from "@/components/Seperator";
 import styled from "@emotion/styled";
 import { PetInfo } from "@/models/signup";
-import { SetStateAction, useCallback, useState } from "react";
+import { SetStateAction, useCallback } from "react";
 import RoundButton from "@/components/Button/RoundButton";
 import {
   PET_BREED,
@@ -32,33 +32,19 @@ export default function PetInfoForm({
   currentIdx,
   setPetInfos,
 }: Props) {
-  const [imagePreview, setImagePreview] = useState<string | null>(null);
-
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      if (reader.error) {
-        alert("image upload error");
-      }
-      reader.onloadend = () => {
-        setImagePreview(reader.result as string);
-      };
-    }
-  };
-
   const handleDeletePet = useCallback(() => {
     setPetInfos((prev) => prev.filter((_, idx) => idx !== currentIdx));
   }, [currentIdx, setPetInfos]);
 
+  const handleChangeImage = (image: File | undefined) => {
+    if (image) {
+      handleChange(currentIdx, "petImage", image?.name);
+    }
+  };
+
   return (
     <>
-      <ImageInput
-        imgSrc={imagePreview}
-        onChangeImage={handleImageUpload}
-        label="사진"
-      />
+      <ImageInput onChangeImage={handleChangeImage} label="사진" />
       <Seperator height={24} />
       <InputWrapper>
         <TextInput.Label id={`pet-age__${currentIdx + 1}`}>
