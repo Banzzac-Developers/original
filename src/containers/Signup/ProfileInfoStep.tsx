@@ -22,7 +22,7 @@ export default function ProfileInfoStep({
 }: Props) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
-  const handleChange = (key: keyof ProfileInfo, value: number[]) => {
+  const handleChange = (key: keyof ProfileInfo, value: number | number[]) => {
     setProfileInfo((prev) => ({ ...prev, [key]: value }));
   };
 
