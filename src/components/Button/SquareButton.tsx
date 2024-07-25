@@ -8,6 +8,7 @@ type Props = {
   onClick: () => void;
   active?: boolean;
   className?: string;
+  type?: "button" | "submit" | "reset";
 };
 
 export default function SquareButton({
@@ -17,9 +18,12 @@ export default function SquareButton({
   active = false,
   onClick,
   className,
+  type = "button",
 }: Props) {
   return (
     <StyledButton
+      role="button"
+      type={type}
       className={className}
       active={active}
       isFill={fill}
