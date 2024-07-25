@@ -2,6 +2,7 @@ import SquareButton from "@/components/Button/SquareButton";
 import InputDefault from "@/components/Input";
 import ButtonSelect from "@/components/Input/ButtonSelect";
 import Seperator from "@/components/Seperator";
+import { GENDER } from "@/constants";
 import { UserInfo } from "@/models/signup";
 import styled from "@emotion/styled";
 import { SetStateAction } from "react";
@@ -43,7 +44,7 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
         <Seperator height={28} />
         <ButtonSelect
           label="성별"
-          buttonList={["남자", "여자"]}
+          buttonList={GENDER.map((v) => v.name)}
           multipleSelection={false}
           maxSelection={1}
           onChangeButton={(idx) => handleChange("gender", idx)}

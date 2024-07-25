@@ -6,6 +6,14 @@ import styled from "@emotion/styled";
 import { PetInfo } from "@/models/signup";
 import { SetStateAction, useCallback, useState } from "react";
 import RoundButton from "@/components/Button/RoundButton";
+import {
+  PET_BREED,
+  GENDER,
+  NEUTRALIZATION,
+  PET_SIZE,
+  PET_PERSONALITY,
+  PET_ACTIVITY,
+} from "@/constants";
 
 interface Props {
   petInfo: PetInfo;
@@ -77,7 +85,7 @@ export default function PetInfoContainer({
       <Seperator height={24} />
       <ButtonSelection
         label="성별"
-        buttonList={["남자", "여자"]}
+        buttonList={GENDER.map((v) => v.name)}
         value={petInfo.gender}
         onChangeButton={(idx) => handleChange(currentIdx, "gender", idx)}
         multipleSelection={false}
@@ -86,7 +94,7 @@ export default function PetInfoContainer({
       <Seperator height={24} />
       <ButtonSelection
         label="중성화"
-        buttonList={["네", "아니요"]}
+        buttonList={NEUTRALIZATION}
         value={petInfo.neutralization}
         onChangeButton={(idx) =>
           handleChange(currentIdx, "neutralization", idx)
@@ -98,7 +106,7 @@ export default function PetInfoContainer({
       <ButtonSelection
         gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
         label="크기"
-        buttonList={["소형", "중형", "대형"]}
+        buttonList={PET_SIZE.map((v) => v.name)}
         value={petInfo.size}
         onChangeButton={(idx) => handleChange(currentIdx, "size", idx)}
         multipleSelection={false}
@@ -111,17 +119,7 @@ export default function PetInfoContainer({
           gap: "10px 8px",
         }}
         label="견종"
-        buttonList={[
-          "믹스",
-          "말티즈",
-          "푸들",
-          "포메라니안",
-          "치와와",
-          "시츄",
-          "골든리트리버",
-          "진돗개",
-          "비글",
-        ]}
+        buttonList={PET_BREED}
         value={petInfo.breed}
         onChangeButton={(idx) => handleChange(currentIdx, "breed", idx)}
         multipleSelection={false}
@@ -134,14 +132,7 @@ export default function PetInfoContainer({
           gap: "10px 8px",
         }}
         label="성격"
-        buttonList={[
-          "외향적",
-          "에너제틱",
-          "사회성  좋은",
-          "내향적",
-          "얌전한",
-          "샤이한",
-        ]}
+        buttonList={PET_PERSONALITY.map((v) => v.name)}
         value={petInfo.personality}
         onChangeButton={(idxArr) =>
           handleChange(currentIdx, "personality", idxArr)
@@ -153,7 +144,7 @@ export default function PetInfoContainer({
       <ButtonSelect
         gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
         label="활동량"
-        buttonList={["적음", "보통", "많음"]}
+        buttonList={PET_ACTIVITY.map((v) => v.name)}
         value={petInfo.activity}
         onChangeButton={(idx) => handleChange(currentIdx, "activity", idx)}
         multipleSelection={false}
