@@ -4,7 +4,7 @@ import styled, { CSSObject } from "@emotion/styled";
 type Props = {
   label: string;
   buttonList: string[];
-  isDuplicate: boolean;
+  multipleSelection: boolean;
   maxSelection: number;
   value: number[];
   gridStyle?: CSSObject;
@@ -17,14 +17,14 @@ export default function ButtonSelect({
   label,
   buttonList,
   gridStyle = { gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" },
-  isDuplicate,
+  multipleSelection,
   maxSelection,
   value,
   onChangeButton,
 }: Props) {
   const handleClick = (idx: number) => {
     // 중복선택 불가능
-    if (!isDuplicate) {
+    if (!multipleSelection) {
       if (value.includes(idx)) {
         const newArr = value.filter((v) => v !== idx && v >= 0);
         onChangeButton(newArr);

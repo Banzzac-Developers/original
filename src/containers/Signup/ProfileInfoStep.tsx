@@ -58,14 +58,14 @@ export default function ProfileInfoStep({
             maxSelection={4}
             label="mbti"
             buttonList={["E", "S", "F", "J", "I", "N", "T", "P"]}
-            isDuplicate
+            multipleSelection
             value={profileInfo.mbti}
             onChangeButton={(idxArr) => handleChange("mbti", idxArr)}
           />
           <Seperator height={48} />
           <ButtonSelection
             gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
-            isDuplicate
+            multipleSelection
             buttonList={[
               "많이 걷는",
               "앉아서 쉬는",
