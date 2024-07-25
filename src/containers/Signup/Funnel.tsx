@@ -5,11 +5,12 @@ import PetInfoStep from "./PetInfoStep";
 import CompleteStep from "./CompleteStep";
 import {
   defaultPetInfo,
+  defaultUserInfo,
   PetInfo,
   ProfileInfo,
   SignupSchema,
   UserInfo,
-} from "@/models/signup";
+} from "@/models";
 import API from "@/api/api";
 import URLs from "@/api/urls";
 import { encodeSignupSchema } from "@/utils";
@@ -18,12 +19,7 @@ type Step = "user" | "profile" | "pet" | "final";
 
 export default function SignupFunnel() {
   const [step, setStep] = useState<Step>("user");
-  const [userInfo, setUserInfo] = useState<UserInfo>({
-    email: "",
-    nickname: "",
-    gender: -1,
-    age: "",
-  });
+  const [userInfo, setUserInfo] = useState<UserInfo>(defaultUserInfo);
   const [profileInfo, setProfileInfo] = useState<ProfileInfo>({
     mbti: [],
     walkingStyle: [],
