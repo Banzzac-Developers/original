@@ -78,10 +78,8 @@ export default function PetInfoContainer({
       <ButtonSelection
         label="성별"
         buttonList={["남자", "여자"]}
-        value={[petInfo.gender]}
-        onChangeButton={(idxArr) =>
-          handleChange(currentIdx, "gender", idxArr[0])
-        }
+        value={petInfo.gender}
+        onChangeButton={(idx) => handleChange(currentIdx, "gender", idx)}
         multipleSelection={false}
         maxSelection={1}
       />
@@ -89,9 +87,9 @@ export default function PetInfoContainer({
       <ButtonSelection
         label="중성화"
         buttonList={["네", "아니요"]}
-        value={[petInfo.neutralization]}
-        onChangeButton={(idxArr) =>
-          handleChange(currentIdx, "neutralization", idxArr[0])
+        value={petInfo.neutralization}
+        onChangeButton={(idx) =>
+          handleChange(currentIdx, "neutralization", idx)
         }
         multipleSelection={false}
         maxSelection={1}
@@ -101,8 +99,8 @@ export default function PetInfoContainer({
         gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
         label="크기"
         buttonList={["소형", "중형", "대형"]}
-        value={[petInfo.size]}
-        onChangeButton={(idxArr) => handleChange(currentIdx, "size", idxArr[0])}
+        value={petInfo.size}
+        onChangeButton={(idx) => handleChange(currentIdx, "size", idx)}
         multipleSelection={false}
         maxSelection={1}
       />
@@ -124,10 +122,8 @@ export default function PetInfoContainer({
           "진돗개",
           "비글",
         ]}
-        value={[petInfo.breed]}
-        onChangeButton={(idxArr) =>
-          handleChange(currentIdx, "breed", idxArr[0])
-        }
+        value={petInfo.breed}
+        onChangeButton={(idx) => handleChange(currentIdx, "breed", idx)}
         multipleSelection={false}
         maxSelection={1}
       />
@@ -158,10 +154,8 @@ export default function PetInfoContainer({
         gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
         label="활동량"
         buttonList={["적음", "보통", "많음"]}
-        value={[petInfo.activity]}
-        onChangeButton={(idxArr) =>
-          handleChange(currentIdx, "activity", idxArr[0])
-        }
+        value={petInfo.activity}
+        onChangeButton={(idx) => handleChange(currentIdx, "activity", idx)}
         multipleSelection={false}
         maxSelection={1}
       />
