@@ -13,6 +13,13 @@ export interface UserInfo {
   age: string;
 }
 
+export const defaultUserInfo = {
+  email: "",
+  nickname: "",
+  gender: -1,
+  age: "",
+};
+
 export interface ProfileInfo {
   mbti: number[];
   walkingStyle: number[];
