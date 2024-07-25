@@ -83,6 +83,7 @@ export default function PetInfoStep({
             backgroundColor="#212121"
           />
           <SquareButton
+            type="submit"
             title={"다음"}
             fill
             backgroundColor="#212121"
