@@ -8,7 +8,7 @@ interface LabelProps {
 
 export default function Label({ id, className, children }: LabelProps) {
   return (
-    <StyledLabel id={id} className={className}>
+    <StyledLabel htmlFor={id} className={className}>
       {children}
     </StyledLabel>
   );
