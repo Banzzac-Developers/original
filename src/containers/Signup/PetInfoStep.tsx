@@ -3,7 +3,7 @@ import RoundHeader from "@/components/Header/RoundHeader";
 import { defaultPetInfo, PetInfo } from "@/models/signup";
 import styled from "@emotion/styled";
 import { SetStateAction, useCallback } from "react";
-import PetInfoContainer from "./PetInfoContainer";
+import PetInfoForm from "./PetInfoForm";
 import DividerDefault from "@/components/Divider/Divider";
 import Seperator from "@/components/Seperator";
 import RoundButton from "@/components/Button/RoundButton";
@@ -59,7 +59,7 @@ export default function PetInfoStep({
       <Container>
         {petInfos.map((petInfo, idx) => (
           <div key={idx}>
-            <PetInfoContainer
+            <PetInfoForm
               petInfo={petInfo}
               handleChange={handleChangePetInfos}
               currentIdx={idx}

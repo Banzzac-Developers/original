@@ -26,7 +26,7 @@ interface Props {
   setPetInfos: React.Dispatch<SetStateAction<PetInfo[]>>;
 }
 
-export default function PetInfoContainer({
+export default function PetInfoForm({
   petInfo,
   handleChange,
   currentIdx,
