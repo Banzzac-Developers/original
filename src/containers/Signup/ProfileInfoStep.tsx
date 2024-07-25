@@ -3,6 +3,7 @@ import RoundHeader from "@/components/Header/RoundHeader";
 import ButtonSelect from "@/components/Input/ButtonSelect";
 import ImageInput from "@/components/Input/ImageInput";
 import Seperator from "@/components/Seperator";
+import { MBTI, WALKING_STYLE } from "@/constants";
 import { ProfileInfo } from "@/models/signup";
 import styled from "@emotion/styled";
 import { SetStateAction, useState } from "react";
@@ -57,7 +58,7 @@ export default function ProfileInfoStep({
             }}
             maxSelection={4}
             label="mbti"
-            buttonList={["E", "S", "F", "J", "I", "N", "T", "P"]}
+            buttonList={MBTI}
             multipleSelection
             value={profileInfo.mbti}
             onChangeButton={(idxArr) => handleChange("mbti", idxArr)}
@@ -66,13 +67,7 @@ export default function ProfileInfoStep({
           <ButtonSelection
             gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
             multipleSelection
-            buttonList={[
-              "많이 걷는",
-              "앉아서 쉬는",
-              "대화를 하는",
-              "대화가 적은",
-              "산책이 능숙한",
-            ]}
+            buttonList={WALKING_STYLE.map((v) => v.name)}
             maxSelection={5}
             label="산책 스타일"
             value={profileInfo.walkingStyle}
