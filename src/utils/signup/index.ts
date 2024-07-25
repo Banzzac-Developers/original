@@ -15,7 +15,7 @@ export const encodeSignupSchema = (
   petInfos: PetInfo[],
 ): SignupSchema => {
   const { nickname, age, gender: genderIdx } = userInfo;
-  const { mbti: mbtiArr, walkingStyle } = profileInfo;
+  const { mbti: mbtiArr, walkingStyle, profileImage } = profileInfo;
 
   const gender = GENDER[genderIdx].value;
   const mbti = mbtiArr.map((v) => MBTI[v]).join("");
@@ -29,6 +29,8 @@ export const encodeSignupSchema = (
     img_delete_flag: "N" as const,
   };
 
+  const humanProfileImg = profileImage;
+
   const petProfile = petInfos.map(
     ({
       age,
@@ -40,6 +42,7 @@ export const encodeSignupSchema = (
       breed,
       personality,
       activity,
+      petImage,
     }) => {
       const pet_gender = GENDER[gender].value;
       const pet_breed = PET_BREED[breed];
@@ -60,12 +63,13 @@ export const encodeSignupSchema = (
         pet_personality,
         activity_rate,
         img_delete_flag: "N" as const,
-        target_img_name: "",
+        target_img_name: petImage ? petImage : null,
       };
     },
   );
   return {
     humanProfile,
+    humanProfileImg,
     petProfile,
   };
 };

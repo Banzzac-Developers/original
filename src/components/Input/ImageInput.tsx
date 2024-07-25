@@ -1,16 +1,36 @@
 import Seperator from "@/components/Seperator";
 import styled from "@emotion/styled";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import SvgSelector from "../Svg/SvgSelector";
 
 export type Props = {
   label: string;
-  onChangeImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  imgSrc: string | null;
+  onChangeImage: (file: File | undefined) => void;
 };
 
-export default function ImageInput({ label, onChangeImage, imgSrc }: Props) {
+export default function ImageInput({ label, onChangeImage }: Props) {
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      if (reader.error) {
+        alert("image upload error");
+      }
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+    }
+  };
+
+  const handleChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    handleImageUpload(event);
+    onChangeImage(file);
+  };
 
   return (
     <Container>
@@ -18,8 +38,8 @@ export default function ImageInput({ label, onChangeImage, imgSrc }: Props) {
       <Seperator height={10} />
       <ImageUploadContainer>
         <ImagePreview onClick={() => fileInputRef.current?.click()}>
-          {imgSrc ? (
-            <img src={imgSrc} alt="Uploaded" />
+          {imagePreview ? (
+            <img src={imagePreview} alt="Uploaded" />
           ) : (
             <SvgSelector
               svg="filledAddRound"
@@ -33,7 +53,7 @@ export default function ImageInput({ label, onChangeImage, imgSrc }: Props) {
           type="file"
           ref={fileInputRef}
           style={{ display: "none" }}
-          onChange={onChangeImage}
+          onChange={handleChangeImage}
           accept="image/*"
         />
       </ImageUploadContainer>
