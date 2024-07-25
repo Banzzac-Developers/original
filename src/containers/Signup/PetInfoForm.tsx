@@ -1,4 +1,3 @@
-import InputDefault from "@/components/Input";
 import ButtonSelect from "@/components/Input/ButtonSelect";
 import ImageInput from "@/components/Input/ImageInput";
 import Seperator from "@/components/Seperator";
@@ -14,6 +13,7 @@ import {
   PET_PERSONALITY,
   PET_ACTIVITY,
 } from "@/constants";
+import TextInput from "@/components/Input/TextInput";
 
 interface Props {
   petInfo: PetInfo;
@@ -59,29 +59,54 @@ export default function PetInfoForm({
         onChangeImage={handleImageUpload}
         label="사진"
       />
-      <InputDefault
-        title="나이"
-        id="age"
-        placeholder="출생년도"
-        value={petInfo.age}
-        onChange={(e) => handleChange(currentIdx, "age", e.target.value)}
-      />
       <Seperator height={24} />
-      <InputDefault
-        title="이름"
-        placeholder="직접입력"
-        id="name"
-        value={petInfo.name}
-        onChange={(e) => handleChange(currentIdx, "name", e.target.value)}
-      />
+      <InputWrapper>
+        <TextInput.Label id={`pet-age__${currentIdx + 1}`}>
+          나이
+        </TextInput.Label>
+        <TextInput.Input
+          maxLength={4}
+          type="text"
+          inputMode="numeric"
+          id={`pet-age__${currentIdx + 1}`}
+          placeholder="출생년도"
+          name={`pet-age__${currentIdx + 1}`}
+          value={petInfo.age}
+          onChange={(e) => handleChange(currentIdx, "age", e.target.value)}
+        />
+      </InputWrapper>
       <Seperator height={24} />
-      <InputDefault
-        title="몸무게"
-        placeholder="직접입력"
-        id="weight"
-        value={petInfo.weight}
-        onChange={(e) => handleChange(currentIdx, "weight", e.target.value)}
-      />
+      <InputWrapper>
+        <TextInput.Label id={`pet-name__${currentIdx + 1}`}>
+          이름
+        </TextInput.Label>
+        <TextInput.Input
+          maxLength={10}
+          type="text"
+          inputMode="numeric"
+          id={`pet-name__${currentIdx + 1}`}
+          placeholder="직접입력"
+          name={`pet-name__${currentIdx + 1}`}
+          value={petInfo.name}
+          onChange={(e) => handleChange(currentIdx, "name", e.target.value)}
+        />
+      </InputWrapper>
+      <Seperator height={24} />
+      <InputWrapper>
+        <TextInput.Label id={`pet-weight__${currentIdx + 1}`}>
+          몸무게
+        </TextInput.Label>
+        <TextInput.Input
+          maxLength={2}
+          type="text"
+          inputMode="numeric"
+          id={`pet-weight__${currentIdx + 1}`}
+          placeholder="직접입력"
+          name={`pet-weight__${currentIdx + 1}`}
+          value={petInfo.weight}
+          onChange={(e) => handleChange(currentIdx, "weight", e.target.value)}
+        />
+      </InputWrapper>
       <Seperator height={24} />
       <ButtonSelection
         label="성별"
@@ -167,6 +192,11 @@ export default function PetInfoForm({
 
 const ButtonSelection = styled(ButtonSelect)`
   width: 100%;
+`;
+
+const InputWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const DeletePetButtonWrapper = styled.div`
