@@ -22,7 +22,7 @@ export const defaultUserInfo = {
 
 export interface ProfileInfo {
   mbti: number[];
-  walkingStyle: number[];
+  walkingStyle: number;
 }
 
 export interface PetInfo {
@@ -50,7 +50,7 @@ export const defaultPetInfo = {
 };
 
 type Gender = (typeof GENDER)[number]["value"];
-type WalkingStyle = (typeof WALKING_STYLE)[number]["value"][];
+type WalkingStyle = (typeof WALKING_STYLE)[number]["value"];
 type WalkingSpeed = "SLOW" | "NORMAL" | "FAST";
 type PetSize = (typeof PET_SIZE)[number]["value"];
 type PetPersonality = (typeof PET_PERSONALITY)[number]["value"];
