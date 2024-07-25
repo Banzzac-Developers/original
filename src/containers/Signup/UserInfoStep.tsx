@@ -46,8 +46,8 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
           buttonList={["남자", "여자"]}
           multipleSelection={false}
           maxSelection={1}
-          onChangeButton={(idxArr) => handleChange("gender", idxArr[0])}
-          value={[userInfo.gender]}
+          onChangeButton={(idx) => handleChange("gender", idx)}
+          value={userInfo.gender}
         />
         <Seperator height={28} />
         <InputDefault
