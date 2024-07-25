@@ -19,7 +19,7 @@ export const encodeSignupSchema = (
 
   const gender = GENDER[genderIdx].value;
   const mbti = mbtiArr.map((v) => MBTI[v]).join("");
-  const walking_style = walkingStyle.map((v) => WALKING_STYLE[v].value);
+  const walking_style = WALKING_STYLE[walkingStyle].value;
   const humanProfile = {
     nick_name: nickname,
     gender,

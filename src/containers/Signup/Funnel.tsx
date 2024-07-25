@@ -22,7 +22,7 @@ export default function SignupFunnel() {
   const [userInfo, setUserInfo] = useState<UserInfo>(defaultUserInfo);
   const [profileInfo, setProfileInfo] = useState<ProfileInfo>({
     mbti: [],
-    walkingStyle: [],
+    walkingStyle: -1,
   });
   const [petInfos, setPetInfos] = useState<PetInfo[]>([defaultPetInfo]);
 

@@ -66,12 +66,12 @@ export default function ProfileInfoStep({
           <Seperator height={48} />
           <ButtonSelection
             gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
-            multipleSelection
+            multipleSelection={false}
             buttonList={WALKING_STYLE.map((v) => v.name)}
-            maxSelection={5}
+            maxSelection={1}
             label="산책 스타일"
             value={profileInfo.walkingStyle}
-            onChangeButton={(idxArr) => handleChange("walkingStyle", idxArr)}
+            onChangeButton={(idx) => handleChange("walkingStyle", idx)}
           />
         </div>
         <ButtonContainer>
