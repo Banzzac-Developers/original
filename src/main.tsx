@@ -27,7 +27,7 @@ const router = createBrowserRouter(
 
 const enableMocking = async () => {
   if (import.meta.env.VITE_NODE_ENV === "mocking") {
-    await worker.start();
+    await worker.start({ onUnhandledRequest: "bypass" });
   }
 };
 
