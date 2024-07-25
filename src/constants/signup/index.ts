@@ -32,7 +32,7 @@ export const WALKING_STYLE = [
     name: "산책이 능숙한",
     value: "WALK_WELL",
   },
-];
+] as const;
 
 export const NEUTRALIZATION = ["네", "아니요"];
 

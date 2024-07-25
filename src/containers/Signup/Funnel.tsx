@@ -7,8 +7,12 @@ import {
   defaultPetInfo,
   PetInfo,
   ProfileInfo,
+  SignupSchema,
   UserInfo,
 } from "@/models/signup";
+import API from "@/api/api";
+import URLs from "@/api/urls";
+import { encodeSignupSchema } from "@/utils";
 
 type Step = "user" | "profile" | "pet" | "final";
 
@@ -35,8 +39,22 @@ export default function SignupFunnel() {
     scrollTop();
   };
 
+  const handleSubmit = async () => {
+    const body = encodeSignupSchema(userInfo, profileInfo, petInfos);
+    const res = await API.post<SignupSchema, { message: string }>(
+      URLs.signup,
+      body,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      },
+    );
+    console.log(res);
+  };
+
   return (
-    <>
+    <form role="form" onSubmit={(e) => e.preventDefault()}>
       {step === "user" && (
         <UserInfoStep
           userInfo={userInfo}
@@ -57,10 +75,13 @@ export default function SignupFunnel() {
           petInfos={petInfos}
           setPetInfos={setPetInfos}
           onBefore={() => handleStep("profile")}
-          onNext={() => handleStep("final")}
+          onNext={() => {
+            handleSubmit();
+            handleStep("final");
+          }}
         />
       )}
       {step === "final" && <CompleteStep />}
-    </>
+    </form>
   );
 }

@@ -1,3 +1,11 @@
+import {
+  GENDER,
+  PET_ACTIVITY,
+  PET_PERSONALITY,
+  PET_SIZE,
+  WALKING_STYLE,
+} from "@/constants";
+
 export interface UserInfo {
   email: string;
   nickname: string;
@@ -33,3 +41,42 @@ export const defaultPetInfo = {
   personality: [],
   activity: -1,
 };
+
+type Gender = (typeof GENDER)[number]["value"];
+type WalkingStyle = (typeof WALKING_STYLE)[number]["value"][];
+type WalkingSpeed = "SLOW" | "NORMAL" | "FAST";
+type PetSize = (typeof PET_SIZE)[number]["value"];
+type PetPersonality = (typeof PET_PERSONALITY)[number]["value"];
+type ActivityRate = (typeof PET_ACTIVITY)[number]["value"];
+
+export interface SignupSchema {
+  petProfileImg?: File;
+  humanProfileImg?: File;
+  humanProfile: {
+    nick_name: string; // max-length = 15
+    gender: Gender;
+    birth_year: string;
+    introduction?: string; // max-length = 50
+    number_weekly_walks?: string;
+    average_walking_time?: string;
+    walking_speed?: WalkingSpeed;
+    walking_style: WalkingStyle;
+    mbti: string;
+    img_delete_flag: "N";
+  };
+  petProfile: {
+    pet_id: null;
+    pet_name: string; // max-length 10
+    pet_gender: Gender;
+    pet_breed: string;
+    pet_birth_year: number;
+    neutralization: boolean;
+    pet_weight: string;
+    pet_size: PetSize;
+    pet_personality: PetPersonality[];
+    pet_introduction?: string; // max-length 50
+    activity_rate: ActivityRate;
+    img_delete_flag: "N";
+    target_img_name: string;
+  }[];
+}
