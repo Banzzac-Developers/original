@@ -26,7 +26,7 @@ export const DefaultButtonSelect: Story = {
   args: {
     label: "성별",
     buttonList: ["남자", "여자"],
-    isDuplicate: false,
+    multipleSelection: false,
     maxSelection: 1,
     value: [],
   },
@@ -36,7 +36,7 @@ export const MBTIButton: Story = {
   args: {
     label: "MBTI",
     buttonList: ["E", "S", "F", "J", "I", "N", "T", "P"],
-    isDuplicate: true,
+    multipleSelection: true,
     maxSelection: 4,
     gridStyle: {
       gridTemplateColumns: "repeat(4, 1fr)",
@@ -56,7 +56,7 @@ export const WalkButton: Story = {
       "대화가 적은",
       "산책이 능숙한",
     ],
-    isDuplicate: false,
+    multipleSelection: false,
     maxSelection: 1,
     value: [],
     gridStyle: {
@@ -80,7 +80,7 @@ export const BreedButton: Story = {
       "진돗개",
       "비글",
     ],
-    isDuplicate: false,
+    multipleSelection: false,
     maxSelection: 1,
     value: [],
     gridStyle: {

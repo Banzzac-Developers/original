@@ -82,7 +82,7 @@ export default function PetInfoContainer({
         onChangeButton={(idxArr) =>
           handleChange(currentIdx, "gender", idxArr[0])
         }
-        isDuplicate={false}
+        multipleSelection={false}
         maxSelection={1}
       />
       <Seperator height={24} />
@@ -93,7 +93,7 @@ export default function PetInfoContainer({
         onChangeButton={(idxArr) =>
           handleChange(currentIdx, "neutralization", idxArr[0])
         }
-        isDuplicate={false}
+        multipleSelection={false}
         maxSelection={1}
       />
       <Seperator height={24} />
@@ -103,7 +103,7 @@ export default function PetInfoContainer({
         buttonList={["소형", "중형", "대형"]}
         value={[petInfo.size]}
         onChangeButton={(idxArr) => handleChange(currentIdx, "size", idxArr[0])}
-        isDuplicate={false}
+        multipleSelection={false}
         maxSelection={1}
       />
       <Seperator height={24} />
@@ -128,7 +128,7 @@ export default function PetInfoContainer({
         onChangeButton={(idxArr) =>
           handleChange(currentIdx, "breed", idxArr[0])
         }
-        isDuplicate={false}
+        multipleSelection={false}
         maxSelection={1}
       />
       <Seperator height={24} />
@@ -150,7 +150,7 @@ export default function PetInfoContainer({
         onChangeButton={(idxArr) =>
           handleChange(currentIdx, "personality", idxArr)
         }
-        isDuplicate
+        multipleSelection
         maxSelection={6}
       />
       <Seperator height={24} />
@@ -162,7 +162,7 @@ export default function PetInfoContainer({
         onChangeButton={(idxArr) =>
           handleChange(currentIdx, "activity", idxArr[0])
         }
-        isDuplicate={false}
+        multipleSelection={false}
         maxSelection={1}
       />
       <Seperator height={24} />
