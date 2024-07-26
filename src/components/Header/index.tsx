@@ -1,5 +1,6 @@
 import SvgSelector from "@/components/Svg/SvgSelector";
 import { HeaderIcon } from "@/models";
+import styled from "@emotion/styled";
 
 const IconButton = ({
   icon,
@@ -43,9 +44,15 @@ const IconButton = ({
 };
 
 const Title = ({ title }: { title: string }) => {
-  return <h1>{title}</h1>;
+  return <TitleContent>{title}</TitleContent>;
 };
 
 const Header = { IconButton, Title };
 
 export default Header;
+
+const TitleContent = styled.h1`
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+`
