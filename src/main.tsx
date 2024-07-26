@@ -13,11 +13,13 @@ import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import { worker } from "./utils/msw/browser.ts";
 import Friends from "./pages/Friends/index.tsx";
+import Signup from "./pages/Signup";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route errorElement={<NotFound />} path="/" element={<App />}>
       <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
       <Route path="/friends" element={<Friends />} />
     </Route>,
   ),
@@ -25,7 +27,7 @@ const router = createBrowserRouter(
 
 const enableMocking = async () => {
   if (import.meta.env.VITE_NODE_ENV === "mocking") {
-    await worker.start();
+    await worker.start({ onUnhandledRequest: "bypass" });
   }
 };
 

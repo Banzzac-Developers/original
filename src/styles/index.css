@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  font-family: "Pretendard";
+  -webkit-tap-highlight-color: transparent;
+}
+
 html,
 body,
 #root {
@@ -6,17 +12,9 @@ body,
   position: relative;
 }
 
-:root {
-  /* font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-  font-family: "Pretendard";
-  -webkit-tap-highlight-color: transparent;
-}
-
-* {
-  box-sizing: border-box;
+input {
+  outline: none;
+  border: none;
 }
 
 a {

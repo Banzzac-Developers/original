@@ -4,12 +4,12 @@ import styled, { CSSObject } from "@emotion/styled";
 type Props = {
   label: string;
   buttonList: string[];
-  isDuplicate: boolean;
+  multipleSelection: boolean;
   maxSelection: number;
-  value: number[];
+  value: number[] | number;
   gridStyle?: CSSObject;
   className?: string;
-  onChangeButton: (idxArr: number[]) => void;
+  onChangeButton: (idxArr: number[] | number) => void;
 };
 
 export default function ButtonSelect({
@@ -17,22 +17,22 @@ export default function ButtonSelect({
   label,
   buttonList,
   gridStyle = { gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" },
-  isDuplicate,
+  multipleSelection,
   maxSelection,
   value,
   onChangeButton,
 }: Props) {
   const handleClick = (idx: number) => {
-    // 중복선택 불가능
-    if (!isDuplicate) {
-      if (value.includes(idx)) {
-        const newArr = value.filter((v) => v !== idx && v >= 0);
-        onChangeButton(newArr);
+    // 중복 선택 불가능
+    if (!multipleSelection && typeof value === "number") {
+      if (value === idx) {
+        onChangeButton(-1);
       } else {
-        const newArr = [idx].filter((v) => v >= 0);
-        onChangeButton(newArr);
+        onChangeButton(idx);
       }
-    } else {
+    }
+    // 중복 선택 가능
+    else if (Array.isArray(value)) {
       if (!value.includes(idx) && value.length >= maxSelection) return;
       if (value.includes(idx)) {
         const newArr = value.filter((v) => v !== idx && v >= 0);
@@ -44,6 +44,14 @@ export default function ButtonSelect({
     }
   };
 
+  const isActive = (idx: number) => {
+    if (Array.isArray(value)) {
+      return value.includes(idx);
+    } else {
+      return value === idx;
+    }
+  };
+
   return (
     <Container gridStyle={gridStyle} className={className}>
       <Label>{label}</Label>
@@ -52,11 +60,11 @@ export default function ButtonSelect({
         {buttonList.map((button, idx) => (
           <li key={button}>
             <RoundButton
-              active={value.includes(idx)}
+              active={isActive(idx)}
               onClick={() => handleClick(idx)}
               title={button}
               fill={false}
-              backgroundColor={value.includes(idx) ? "#212121" : "#757575"}
+              backgroundColor={isActive(idx) ? "#212121" : "#757575"}
             />
           </li>
         ))}
