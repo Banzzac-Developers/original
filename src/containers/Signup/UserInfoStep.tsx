@@ -14,8 +14,14 @@ interface Props {
 }
 
 export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
+  const validateAge = (value: string) => {
+    return value.match(/^\d+$/) || value === "";
+  };
   const handleChangeInfo = useCallback(
     (key: keyof UserInfo, value: string | number | number[]) => {
+      if (key === "age") {
+        if (!validateAge(value as string)) return;
+      }
       setUserInfo((prev) => ({ ...prev, [key]: value }));
     },
     [setUserInfo],
@@ -30,13 +36,12 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
           <TextInput.Label id="email">이메일</TextInput.Label>
           <TextInput.Input
             inputMode="email"
-            type="email"
+            type="text"
             onChange={(e) => handleChangeInfo("email", e.target.value)}
             value={userInfo.email}
             placeholder="banzzac@gmail.com"
             id="email"
             name="email"
-            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
           />
         </InputWrapper>
         <Seperator height={28} />

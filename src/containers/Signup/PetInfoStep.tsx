@@ -23,6 +23,10 @@ export default function PetInfoStep({
   petInfos,
   setPetInfos,
 }: Props) {
+  const validateAge = (value: string) => {
+    return value.match(/^\d+$/) || value === "";
+  };
+
   const getNewPetInfo = useCallback(
     (
       targetPetInfo: PetInfo,
@@ -38,6 +42,9 @@ export default function PetInfoStep({
       key: keyof PetInfo,
       value: string | number | number[] | File,
     ) => {
+      if (key === "age" || key === "weight") {
+        if (!validateAge(value as string)) return;
+      }
       setPetInfos((prevPetInfos) => {
         const newPetInfo = getNewPetInfo(prevPetInfos[targetIdx], key, value);
         const newPetInfos = prevPetInfos.map((prevPetInfo, idx) =>
