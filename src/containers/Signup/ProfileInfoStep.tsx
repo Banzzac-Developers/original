@@ -59,7 +59,7 @@ export default function ProfileInfoStep({
           />
           <Seperator height={48} />
           <ButtonSelection
-            gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
+            gridStyle={{ gridTemplateColumns: "repeat(3, 108px)", gap: "10px" }}
             multipleSelection={false}
             buttonList={WALKING_STYLE.map((v) => v.name)}
             maxSelection={1}
