@@ -3,12 +3,10 @@ import styled from "@emotion/styled";
 type Props = {
   title: string | React.ReactElement;
   fill: boolean;
-  /**
-   * 버튼 배경색
-   */
   backgroundColor: string;
   onClick: () => void;
   active?: boolean;
+  className?: string;
 };
 
 export default function RoundButton({
@@ -17,9 +15,11 @@ export default function RoundButton({
   backgroundColor,
   active = false,
   onClick,
+  className,
 }: Props) {
   return (
     <StyledButton
+      className={className}
       onClick={onClick}
       active={active}
       isFill={fill}
@@ -38,7 +38,7 @@ const StyledButton = styled.button<{
   min-width: 82px;
   width: inherit;
   display: flex;
-  padding: 8px 0;
+  padding: 9px;
   height: 42px;
   font-size: 16px;
   font-weight: 700;
