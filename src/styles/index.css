@@ -1,19 +1,33 @@
 * {
   box-sizing: border-box;
+  font-family: "Pretendard";
   -webkit-tap-highlight-color: transparent;
 }
 
 html,
 body,
 #root {
+  width: 100%;
   height: 100%;
-}
-
-button {
-  cursor: pointer;
+  position: relative;
 }
 
 input {
   outline: none;
   border: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+  cursor: pointer;
+}
+
+button {
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
 }

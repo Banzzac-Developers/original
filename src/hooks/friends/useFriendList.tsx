@@ -5,7 +5,7 @@ import { frinedListState } from "@/recoil/friends";
 import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
 
-// 값이 왜 셋팅 되질 않는가!!!
+
 export default function useFriendList(){
     const [friendList, setFriendList] = useRecoilState(frinedListState);
 
