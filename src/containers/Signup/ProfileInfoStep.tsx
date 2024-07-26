@@ -6,7 +6,7 @@ import Seperator from "@/components/Seperator";
 import { MBTI, WALKING_STYLE } from "@/constants";
 import { ProfileInfo } from "@/models/signup";
 import styled from "@emotion/styled";
-import { SetStateAction } from "react";
+import { SetStateAction, useCallback } from "react";
 
 interface Props {
   onNext: () => void;
@@ -21,13 +21,19 @@ export default function ProfileInfoStep({
   setProfileInfo,
   profileInfo,
 }: Props) {
-  const handleChange = (key: keyof ProfileInfo, value: number | number[]) => {
-    setProfileInfo((prev) => ({ ...prev, [key]: value }));
-  };
+  const handleChangeInfo = useCallback(
+    (key: keyof ProfileInfo, value: number | number[]) => {
+      setProfileInfo((prev) => ({ ...prev, [key]: value }));
+    },
+    [setProfileInfo],
+  );
 
-  const handleChangeImage = (image: File | undefined) => {
-    setProfileInfo((prev) => ({ ...prev, profileImage: image }));
-  };
+  const handleChangeImage = useCallback(
+    (image: File | undefined) => {
+      setProfileInfo((prev) => ({ ...prev, profileImage: image }));
+    },
+    [setProfileInfo],
+  );
 
   return (
     <>
@@ -49,7 +55,7 @@ export default function ProfileInfoStep({
             buttonList={MBTI}
             multipleSelection
             value={profileInfo.mbti}
-            onChangeButton={(idxArr) => handleChange("mbti", idxArr)}
+            onChangeButton={(idxArr) => handleChangeInfo("mbti", idxArr)}
           />
           <Seperator height={48} />
           <ButtonSelection
@@ -59,7 +65,7 @@ export default function ProfileInfoStep({
             maxSelection={1}
             label="산책 스타일"
             value={profileInfo.walkingStyle}
-            onChangeButton={(idx) => handleChange("walkingStyle", idx)}
+            onChangeButton={(idx) => handleChangeInfo("walkingStyle", idx)}
           />
         </div>
         <ButtonContainer>

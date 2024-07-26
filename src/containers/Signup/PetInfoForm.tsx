@@ -17,7 +17,7 @@ import TextInput from "@/components/Input/TextInput";
 
 interface Props {
   petInfo: PetInfo;
-  handleChange: (
+  handleChangePetInfos: (
     targetIdx: number,
     key: keyof PetInfo,
     value: string | number | number[] | File,
@@ -28,7 +28,7 @@ interface Props {
 
 export default function PetInfoForm({
   petInfo,
-  handleChange,
+  handleChangePetInfos,
   currentIdx,
   setPetInfos,
 }: Props) {
@@ -36,11 +36,14 @@ export default function PetInfoForm({
     setPetInfos((prev) => prev.filter((_, idx) => idx !== currentIdx));
   }, [currentIdx, setPetInfos]);
 
-  const handleChangeImage = (image: File | undefined) => {
-    if (image) {
-      handleChange(currentIdx, "petImage", image);
-    }
-  };
+  const handleChangeImage = useCallback(
+    (image: File | undefined) => {
+      if (image) {
+        handleChangePetInfos(currentIdx, "petImage", image);
+      }
+    },
+    [currentIdx, handleChangePetInfos],
+  );
 
   return (
     <>
@@ -62,7 +65,9 @@ export default function PetInfoForm({
           placeholder="출생년도"
           name={`pet-age__${currentIdx + 1}`}
           value={petInfo.age}
-          onChange={(e) => handleChange(currentIdx, "age", e.target.value)}
+          onChange={(e) =>
+            handleChangePetInfos(currentIdx, "age", e.target.value)
+          }
         />
       </InputWrapper>
       <Seperator height={24} />
@@ -78,7 +83,9 @@ export default function PetInfoForm({
           placeholder="직접입력"
           name={`pet-name__${currentIdx + 1}`}
           value={petInfo.name}
-          onChange={(e) => handleChange(currentIdx, "name", e.target.value)}
+          onChange={(e) =>
+            handleChangePetInfos(currentIdx, "name", e.target.value)
+          }
         />
       </InputWrapper>
       <Seperator height={24} />
@@ -94,7 +101,9 @@ export default function PetInfoForm({
           placeholder="직접입력"
           name={`pet-weight__${currentIdx + 1}`}
           value={petInfo.weight}
-          onChange={(e) => handleChange(currentIdx, "weight", e.target.value)}
+          onChange={(e) =>
+            handleChangePetInfos(currentIdx, "weight", e.target.value)
+          }
         />
       </InputWrapper>
       <Seperator height={24} />
@@ -102,7 +111,9 @@ export default function PetInfoForm({
         label="성별"
         buttonList={GENDER.map((v) => v.name)}
         value={petInfo.gender}
-        onChangeButton={(idx) => handleChange(currentIdx, "gender", idx)}
+        onChangeButton={(idx) =>
+          handleChangePetInfos(currentIdx, "gender", idx)
+        }
         multipleSelection={false}
         maxSelection={1}
       />
@@ -112,7 +123,7 @@ export default function PetInfoForm({
         buttonList={NEUTRALIZATION}
         value={petInfo.neutralization}
         onChangeButton={(idx) =>
-          handleChange(currentIdx, "neutralization", idx)
+          handleChangePetInfos(currentIdx, "neutralization", idx)
         }
         multipleSelection={false}
         maxSelection={1}
@@ -123,7 +134,7 @@ export default function PetInfoForm({
         label="크기"
         buttonList={PET_SIZE.map((v) => v.name)}
         value={petInfo.size}
-        onChangeButton={(idx) => handleChange(currentIdx, "size", idx)}
+        onChangeButton={(idx) => handleChangePetInfos(currentIdx, "size", idx)}
         multipleSelection={false}
         maxSelection={1}
       />
@@ -136,7 +147,7 @@ export default function PetInfoForm({
         label="견종"
         buttonList={PET_BREED}
         value={petInfo.breed}
-        onChangeButton={(idx) => handleChange(currentIdx, "breed", idx)}
+        onChangeButton={(idx) => handleChangePetInfos(currentIdx, "breed", idx)}
         multipleSelection={false}
         maxSelection={1}
       />
@@ -150,7 +161,7 @@ export default function PetInfoForm({
         buttonList={PET_PERSONALITY.map((v) => v.name)}
         value={petInfo.personality}
         onChangeButton={(idxArr) =>
-          handleChange(currentIdx, "personality", idxArr)
+          handleChangePetInfos(currentIdx, "personality", idxArr)
         }
         multipleSelection
         maxSelection={6}
@@ -161,7 +172,9 @@ export default function PetInfoForm({
         label="활동량"
         buttonList={PET_ACTIVITY.map((v) => v.name)}
         value={petInfo.activity}
-        onChangeButton={(idx) => handleChange(currentIdx, "activity", idx)}
+        onChangeButton={(idx) =>
+          handleChangePetInfos(currentIdx, "activity", idx)
+        }
         multipleSelection={false}
         maxSelection={1}
       />
