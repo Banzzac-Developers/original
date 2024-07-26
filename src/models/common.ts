@@ -31,10 +31,10 @@ export type SvgIcon =
   | "filledStar"
   | "star"
   | "menu"
-  | "sendButton";
+  | "sendButton"
+  | "filledRemove";
 
 export type ResData = {
-  success : string,
-  error_code : ScrollSetting
-}
-
+  success: string;
+  error_code: ScrollSetting;
+};
