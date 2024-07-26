@@ -34,7 +34,7 @@ export const encodeSignupSchema = (
   const petProfile = petInfos.map(
     ({
       age,
-      name,
+      name: pet_name,
       weight,
       gender,
       neutralization: neutralizationIdx,
@@ -53,7 +53,7 @@ export const encodeSignupSchema = (
 
       return {
         pet_id: null,
-        pet_name: name,
+        pet_name,
         pet_gender,
         pet_weight: weight,
         pet_breed,
@@ -67,6 +67,7 @@ export const encodeSignupSchema = (
       };
     },
   );
+
   return {
     humanProfile,
     humanProfileImg,
