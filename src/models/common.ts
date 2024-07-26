@@ -35,6 +35,7 @@ export type SvgIcon =
   | "filledRemove";
 
 export type ResData = {
-  success: string;
-  error_code: ScrollSetting;
+  result: string;
+  message: string;
+  error_code: string;
 };
