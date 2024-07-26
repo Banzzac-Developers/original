@@ -13,7 +13,7 @@ export default function ImageInput({ label, onChangeImage, image }: Props) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleImageUpload = useCallback((file: File | undefined) => {
+  const handleImagePreview = useCallback((file: File | undefined) => {
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -37,8 +37,8 @@ export default function ImageInput({ label, onChangeImage, image }: Props) {
   );
 
   useEffect(() => {
-    handleImageUpload(image);
-  }, [handleImageUpload, image]);
+    handleImagePreview(image);
+  }, [handleImagePreview, image]);
 
   return (
     <Container>
