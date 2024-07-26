@@ -50,34 +50,36 @@ export default function SignupFunnel() {
   }, [petInfos, profileInfo, userInfo]);
 
   return (
-    <form role="form" onSubmit={(e) => e.preventDefault()}>
-      {step === "user" && (
-        <UserInfoStep
-          userInfo={userInfo}
-          setUserInfo={setUserInfo}
-          onNext={() => handleStep("profile")}
-        />
-      )}
-      {step === "profile" && (
-        <ProfileInfoStep
-          profileInfo={profileInfo}
-          setProfileInfo={setProfileInfo}
-          onBefore={() => handleStep("user")}
-          onNext={() => handleStep("pet")}
-        />
-      )}
-      {step === "pet" && (
-        <PetInfoStep
-          petInfos={petInfos}
-          setPetInfos={setPetInfos}
-          onBefore={() => handleStep("profile")}
-          onNext={() => {
-            handleSubmit();
-            handleStep("final");
-          }}
-        />
-      )}
+    <>
+      <form role="form" onSubmit={(e) => e.preventDefault()}>
+        {step === "user" && (
+          <UserInfoStep
+            userInfo={userInfo}
+            setUserInfo={setUserInfo}
+            onNext={() => handleStep("profile")}
+          />
+        )}
+        {step === "profile" && (
+          <ProfileInfoStep
+            profileInfo={profileInfo}
+            setProfileInfo={setProfileInfo}
+            onBefore={() => handleStep("user")}
+            onNext={() => handleStep("pet")}
+          />
+        )}
+        {step === "pet" && (
+          <PetInfoStep
+            petInfos={petInfos}
+            setPetInfos={setPetInfos}
+            onBefore={() => handleStep("profile")}
+            onNext={() => {
+              handleSubmit();
+              handleStep("final");
+            }}
+          />
+        )}
+      </form>
       {step === "final" && <CompleteStep />}
-    </form>
+    </>
   );
 }
