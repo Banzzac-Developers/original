@@ -33,7 +33,7 @@ export interface PetInfo {
   gender: number;
   neutralization: number;
   size: number;
-  breed: number;
+  breed: number | string;
   personality: number[];
   activity: number;
   petImage?: File;

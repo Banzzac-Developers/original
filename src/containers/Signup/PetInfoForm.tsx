@@ -14,6 +14,7 @@ import {
   PET_ACTIVITY,
 } from "@/constants";
 import TextInput from "@/components/Input/TextInput";
+import SelectWithCustomInput from "@/components/Input/SelectWithCustomInput";
 
 interface Props {
   petInfo: PetInfo;
@@ -139,7 +140,8 @@ export default function PetInfoForm({
         maxSelection={1}
       />
       <Seperator height={24} />
-      <ButtonSelection
+      <SelectWithCustomInput
+        placeholder="직접입력"
         gridStyle={{
           gridTemplateColumns: "repeat(3, 1fr)",
           gap: "10px 8px",
@@ -147,8 +149,7 @@ export default function PetInfoForm({
         label="견종"
         buttonList={PET_BREED}
         value={petInfo.breed}
-        onChangeButton={(idx) => handleChangePetInfos(currentIdx, "breed", idx)}
-        multipleSelection={false}
+        onChange={(v) => handleChangePetInfos(currentIdx, "breed", v)}
         maxSelection={1}
       />
       <Seperator height={24} />

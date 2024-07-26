@@ -45,7 +45,7 @@ export const encodeSignupSchema = (
       petImage,
     }) => {
       const pet_gender = GENDER[gender].value;
-      const pet_breed = PET_BREED[breed];
+      const pet_breed = typeof breed === "number" ? PET_BREED[breed] : breed;
       const neutralization = neutralizationIdx === 0;
       const pet_size = PET_SIZE[size].value;
       const pet_personality = personality.map((v) => PET_PERSONALITY[v].value);
