@@ -32,7 +32,8 @@ export type SvgIcon =
   | "star"
   | "menu"
   | "sendButton"
-  | "filledRemove";
+  | "filledRemove"
+  | "addComment";
 
 export type ResData = {
   result: string;
