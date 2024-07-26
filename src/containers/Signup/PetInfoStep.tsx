@@ -7,6 +7,8 @@ import PetInfoForm from "./PetInfoForm";
 import DividerDefault from "@/components/Divider/Divider";
 import Seperator from "@/components/Seperator";
 import RoundButton from "@/components/Button/RoundButton";
+import React from "react";
+import SvgSelector from "@/components/Svg/SvgSelector";
 
 interface Props {
   onNext: () => void;
@@ -57,7 +59,7 @@ export default function PetInfoStep({
       <RoundHeader icon="dogFace" description="반려견의 정보를 입력해주세요" />
       <Container>
         {petInfos.map((petInfo, idx) => (
-          <div key={idx}>
+          <React.Fragment key={idx}>
             <PetInfoForm
               petInfo={petInfo}
               handleChangePetInfos={handleChangePetInfos}
@@ -65,11 +67,21 @@ export default function PetInfoStep({
               setPetInfos={setPetInfos}
             />
             <Divider width="100%" color="#e0e0e0" />
-          </div>
+          </React.Fragment>
         ))}
-        <RoundButton
+        <AddPetButton
           backgroundColor="#212121"
-          title="반려견 추가"
+          title={
+            <>
+              <SvgSelector
+                stroke="#212121"
+                svg="filledAddRound"
+                width={24}
+                height={24}
+              />
+              <span>반려견 추가</span>
+            </>
+          }
           fill={false}
           onClick={handleAddPet}
         />
@@ -99,13 +111,23 @@ const Container = styled.div`
   min-height: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 100%;
 `;
 
 const Divider = styled(DividerDefault)`
   margin: 24px 0;
 `;
 
+const AddPetButton = styled(RoundButton)`
+  width: fit-content;
+  span {
+    margin-left: 8px;
+  }
+`;
+
 const ButtonContainer = styled.div`
+  width: 100%;
   display: flex;
   gap: 8px;
   button {

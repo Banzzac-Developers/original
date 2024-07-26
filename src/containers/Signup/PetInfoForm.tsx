@@ -15,6 +15,7 @@ import {
 } from "@/constants";
 import TextInput from "@/components/Input/TextInput";
 import SelectWithCustomInput from "@/components/Input/SelectWithCustomInput";
+import SvgSelector from "@/components/Svg/SvgSelector";
 
 interface Props {
   petInfo: PetInfo;
@@ -47,7 +48,7 @@ export default function PetInfoForm({
   );
 
   return (
-    <>
+    <Container>
       <ImageInput
         image={petInfo.petImage}
         onChangeImage={handleChangeImage}
@@ -180,29 +181,54 @@ export default function PetInfoForm({
         maxSelection={1}
       />
       <Seperator height={24} />
+
       {currentIdx >= 1 && (
-        <DeletePetButtonWrapper>
-          <RoundButton
-            title="반려견 삭제"
+        <DeleteButtonWrapper>
+          <DeletePetButton
+            title={
+              <>
+                <SvgSelector
+                  stroke="#fff"
+                  svg="filledRemove"
+                  width={24}
+                  height={24}
+                />
+                <span>반려견 삭제</span>
+              </>
+            }
             onClick={handleDeletePet}
             fill
             backgroundColor="#212121"
           />
-        </DeletePetButtonWrapper>
+        </DeleteButtonWrapper>
       )}
-    </>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  width: 100%;
+`;
 
 const ButtonSelection = styled(ButtonSelect)`
   width: 100%;
 `;
 
+const DeleteButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const DeletePetButton = styled(RoundButton)`
+  width: fit-content;
+  span {
+    margin-left: 11px;
+  }
+`;
+
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
-`;
-
-const DeletePetButtonWrapper = styled.div`
-  width: 100%;
 `;
