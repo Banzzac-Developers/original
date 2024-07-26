@@ -14,6 +14,7 @@ import {
 import API from "@/api/api";
 import URLs from "@/api/urls";
 import { encodeSignupSchema } from "@/utils";
+import { z } from "zod";
 
 type Step = "user" | "profile" | "pet" | "final";
 
@@ -30,7 +31,69 @@ export default function SignupFunnel() {
     window.scrollTo({ top: 0 });
   };
 
-  const handleStep = useCallback((key: Step) => {
+  const validateUserInfo = useCallback(() => {
+    const UserInfo = z.object({
+      nickname: z.string().min(1),
+      gender: z.number().min(0),
+      age: z.string().min(1),
+    });
+    UserInfo.parse(userInfo);
+  }, [userInfo]);
+
+  const validateProfileInfo = useCallback(() => {
+    const ProfileInfo = z.object({
+      mbti: z.array(z.number()).min(4),
+      walkingStyle: z.number().min(0),
+    });
+    ProfileInfo.parse(profileInfo);
+  }, [profileInfo]);
+
+  const validatePetInfos = useCallback(() => {
+    const PetInfos = z
+      .array(
+        z.object({
+          age: z.string().min(1),
+          name: z.string().min(1),
+          weight: z.string().min(1),
+          gender: z.number().min(0),
+          neutralization: z.number().min(0),
+          size: z.number().min(0),
+          breed: z.union([z.number().min(0), z.string().min(1)]),
+          personality: z.array(z.number()).min(0),
+          activity: z.number().min(0),
+        }),
+      )
+      .min(1);
+    PetInfos.parse(petInfos);
+  }, [petInfos]);
+
+  const validate = useCallback(
+    (key: Step) => {
+      switch (key) {
+        case "profile":
+          validateUserInfo();
+          break;
+        case "pet":
+          validateProfileInfo();
+          break;
+        case "final":
+          validatePetInfos();
+          break;
+      }
+    },
+    [validatePetInfos, validateProfileInfo, validateUserInfo],
+  );
+
+  const handleNextStep = useCallback(
+    (key: Step) => {
+      validate(key);
+      setStep(key);
+      scrollTop();
+    },
+    [validate],
+  );
+
+  const handleBeforeStep = useCallback((key: Step) => {
     setStep(key);
     scrollTop();
   }, []);
@@ -56,25 +119,25 @@ export default function SignupFunnel() {
           <UserInfoStep
             userInfo={userInfo}
             setUserInfo={setUserInfo}
-            onNext={() => handleStep("profile")}
+            onNext={() => handleNextStep("profile")}
           />
         )}
         {step === "profile" && (
           <ProfileInfoStep
             profileInfo={profileInfo}
             setProfileInfo={setProfileInfo}
-            onBefore={() => handleStep("user")}
-            onNext={() => handleStep("pet")}
+            onBefore={() => handleBeforeStep("user")}
+            onNext={() => handleNextStep("pet")}
           />
         )}
         {step === "pet" && (
           <PetInfoStep
             petInfos={petInfos}
             setPetInfos={setPetInfos}
-            onBefore={() => handleStep("profile")}
+            onBefore={() => handleBeforeStep("profile")}
             onNext={() => {
               handleSubmit();
-              handleStep("final");
+              handleNextStep("final");
             }}
           />
         )}
