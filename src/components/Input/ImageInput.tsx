@@ -1,19 +1,19 @@
 import Seperator from "@/components/Seperator";
 import styled from "@emotion/styled";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import SvgSelector from "../Svg/SvgSelector";
 
 export type Props = {
   label: string;
   onChangeImage: (file: File | undefined) => void;
+  image?: File;
 };
 
-export default function ImageInput({ label, onChangeImage }: Props) {
+export default function ImageInput({ label, onChangeImage, image }: Props) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
-  const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
+  const handleImageUpload = useCallback((file: File | undefined) => {
     if (file) {
       const reader = new FileReader();
       reader.readAsDataURL(file);
@@ -23,14 +23,22 @@ export default function ImageInput({ label, onChangeImage }: Props) {
       reader.onloadend = () => {
         setImagePreview(reader.result as string);
       };
+    } else {
+      setImagePreview(null);
     }
-  };
+  }, []);
 
-  const handleChangeImage = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    handleImageUpload(event);
-    onChangeImage(file);
-  };
+  const handleChangeImage = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      onChangeImage(file);
+    },
+    [onChangeImage],
+  );
+
+  useEffect(() => {
+    handleImageUpload(image);
+  }, [handleImageUpload, image]);
 
   return (
     <Container>

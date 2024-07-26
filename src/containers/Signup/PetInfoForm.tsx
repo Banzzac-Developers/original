@@ -20,7 +20,7 @@ interface Props {
   handleChange: (
     targetIdx: number,
     key: keyof PetInfo,
-    value: string | number | number[],
+    value: string | number | number[] | File,
   ) => void;
   currentIdx: number;
   setPetInfos: React.Dispatch<SetStateAction<PetInfo[]>>;
@@ -38,13 +38,17 @@ export default function PetInfoForm({
 
   const handleChangeImage = (image: File | undefined) => {
     if (image) {
-      handleChange(currentIdx, "petImage", image?.name);
+      handleChange(currentIdx, "petImage", image);
     }
   };
 
   return (
     <>
-      <ImageInput onChangeImage={handleChangeImage} label="사진" />
+      <ImageInput
+        image={petInfo.petImage}
+        onChangeImage={handleChangeImage}
+        label="사진"
+      />
       <Seperator height={24} />
       <InputWrapper>
         <TextInput.Label id={`pet-age__${currentIdx + 1}`}>

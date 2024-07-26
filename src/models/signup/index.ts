@@ -36,7 +36,7 @@ export interface PetInfo {
   breed: number;
   personality: number[];
   activity: number;
-  petImage?: string;
+  petImage?: File;
 }
 
 export const defaultPetInfo = {

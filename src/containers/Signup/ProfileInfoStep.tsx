@@ -34,7 +34,11 @@ export default function ProfileInfoStep({
       <RoundHeader icon="face" description="보호자의 정보를 입력해주세요" />
       <Container>
         <div>
-          <ImageInput onChangeImage={handleChangeImage} label="사진" />
+          <ImageInput
+            image={profileInfo.profileImage}
+            onChangeImage={handleChangeImage}
+            label="사진"
+          />
           <ButtonSelection
             gridStyle={{
               gridTemplateColumns: "repeat(4, 1fr)",
