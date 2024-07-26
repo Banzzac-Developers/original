@@ -1,46 +1,106 @@
-import { SingleProfileImage } from "@/components/ProfileImage/ProfileImage";
 import Seperator from "@/components/Seperator";
 import styled from "@emotion/styled";
+import { useCallback, useEffect, useRef, useState } from "react";
+import SvgSelector from "../Svg/SvgSelector";
 
-type Props = {
-  img: string;
+export type Props = {
   label: string;
-  size: number;
-  border: number;
-  borderColor: string;
+  onChangeImage: (file: File | undefined) => void;
+  image?: File;
 };
 
-export default function ImageInput({
-  img,
-  label,
-  size,
-  border,
-  borderColor,
-}: Props) {
+export default function ImageInput({ label, onChangeImage, image }: Props) {
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleImagePreview = useCallback((file: File | undefined) => {
+    if (file) {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      if (reader.error) {
+        alert("image upload error");
+      }
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+    } else {
+      setImagePreview(null);
+    }
+  }, []);
+
+  const handleChangeImage = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      const file = event.target.files?.[0];
+      onChangeImage(file);
+    },
+    [onChangeImage],
+  );
+
+  useEffect(() => {
+    handleImagePreview(image);
+  }, [handleImagePreview, image]);
+
   return (
     <Container>
       <Label>{label}</Label>
       <Seperator height={10} />
-      <SingleProfileImage
-        img={img}
-        size={size}
-        border={border}
-        borderColor={borderColor}
-      />
+      <ImageUploadContainer>
+        <ImagePreview onClick={() => fileInputRef.current?.click()}>
+          {imagePreview ? (
+            <img src={imagePreview} alt="Uploaded" />
+          ) : (
+            <SvgSelector
+              svg="filledAddRound"
+              width={24}
+              height={24}
+              stroke="#212121"
+            />
+          )}
+        </ImagePreview>
+        <input
+          type="file"
+          ref={fileInputRef}
+          style={{ display: "none" }}
+          onChange={handleChangeImage}
+          accept="image/*"
+        />
+      </ImageUploadContainer>
     </Container>
   );
 }
 
-const Container = styled.div`
-  img {
-    display: block;
-    margin: auto;
-  }
-`;
+const Container = styled.div``;
 
 const Label = styled.label`
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
   color: #000;
+`;
+
+const ImageUploadContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const ImagePreview = styled.div`
+  width: 208px;
+  height: 208px;
+  border-radius: 50%;
+  background-color: #eeeeee;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0px 2px 6px 2px #00000026;
+  box-shadow: 0px 1px 2px 0px #0000004d;
+  border: 4px solid #fff;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;

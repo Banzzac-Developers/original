@@ -31,11 +31,11 @@ export type SvgIcon =
   | "filledStar"
   | "star"
   | "menu"
-  | "sendButton";
+  | "sendButton"
+  | "filledRemove";
 
 export type ResData = {
-  result : string,
-  message : string,
-  error_code : string
-}
-
+  result: string;
+  message: string;
+  error_code: string;
+};
