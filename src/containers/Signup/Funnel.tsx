@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import UserInfoStep from "./UserInfoStep";
 import ProfileInfoStep from "./ProfileInfoStep";
 import PetInfoStep from "./PetInfoStep";
@@ -30,12 +30,12 @@ export default function SignupFunnel() {
     window.scrollTo({ top: 0 });
   };
 
-  const handleStep = (key: Step) => {
+  const handleStep = useCallback((key: Step) => {
     setStep(key);
     scrollTop();
-  };
+  }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     const body = encodeSignupSchema(userInfo, profileInfo, petInfos);
     const res = await API.post<SignupSchema, { message: string }>(
       URLs.signup,
@@ -47,7 +47,7 @@ export default function SignupFunnel() {
       },
     );
     console.log(res);
-  };
+  }, [petInfos, profileInfo, userInfo]);
 
   return (
     <form role="form" onSubmit={(e) => e.preventDefault()}>

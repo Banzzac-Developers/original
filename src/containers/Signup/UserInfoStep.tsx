@@ -5,7 +5,7 @@ import Seperator from "@/components/Seperator";
 import { GENDER } from "@/constants";
 import { UserInfo } from "@/models/signup";
 import styled from "@emotion/styled";
-import { SetStateAction } from "react";
+import { SetStateAction, useCallback } from "react";
 
 interface Props {
   onNext: () => void;
@@ -14,12 +14,12 @@ interface Props {
 }
 
 export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
-  const handleChange = (
-    key: keyof UserInfo,
-    value: string | number | number[],
-  ) => {
-    setUserInfo((prev) => ({ ...prev, [key]: value }));
-  };
+  const handleChangeInfo = useCallback(
+    (key: keyof UserInfo, value: string | number | number[]) => {
+      setUserInfo((prev) => ({ ...prev, [key]: value }));
+    },
+    [setUserInfo],
+  );
 
   return (
     <Container>
@@ -31,7 +31,7 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
           <TextInput.Input
             inputMode="email"
             type="email"
-            onChange={(e) => handleChange("email", e.target.value)}
+            onChange={(e) => handleChangeInfo("email", e.target.value)}
             value={userInfo.email}
             placeholder="banzzac@gmail.com"
             id="email"
@@ -46,7 +46,7 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
             inputMode="text"
             maxLength={15}
             type="text"
-            onChange={(e) => handleChange("nickname", e.target.value)}
+            onChange={(e) => handleChangeInfo("nickname", e.target.value)}
             value={userInfo.nickname}
             placeholder="8~30자리 영문"
             id="nickname"
@@ -59,7 +59,7 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
           buttonList={GENDER.map((v) => v.name)}
           multipleSelection={false}
           maxSelection={1}
-          onChangeButton={(idx) => handleChange("gender", idx)}
+          onChangeButton={(idx) => handleChangeInfo("gender", idx)}
           value={userInfo.gender}
         />
         <Seperator height={28} />
@@ -69,7 +69,7 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
             inputMode="numeric"
             maxLength={4}
             type="text"
-            onChange={(e) => handleChange("age", e.target.value)}
+            onChange={(e) => handleChangeInfo("age", e.target.value)}
             value={userInfo.age}
             placeholder="출생년도"
             id="age"

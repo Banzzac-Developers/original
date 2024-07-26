@@ -26,9 +26,7 @@ export default function PetInfoStep({
       targetPetInfo: PetInfo,
       key: keyof PetInfo,
       value: string | number | number[] | File,
-    ) => {
-      return { ...targetPetInfo, [key]: value };
-    },
+    ) => ({ ...targetPetInfo, [key]: value }),
     [],
   );
 
@@ -40,9 +38,10 @@ export default function PetInfoStep({
     ) => {
       setPetInfos((prevPetInfos) => {
         const newPetInfo = getNewPetInfo(prevPetInfos[targetIdx], key, value);
-        return prevPetInfos.map((prevPetInfo, idx) =>
+        const newPetInfos = prevPetInfos.map((prevPetInfo, idx) =>
           idx === targetIdx ? newPetInfo : prevPetInfo,
         );
+        return newPetInfos;
       });
     },
     [getNewPetInfo, setPetInfos],
@@ -61,7 +60,7 @@ export default function PetInfoStep({
           <div key={idx}>
             <PetInfoForm
               petInfo={petInfo}
-              handleChange={handleChangePetInfos}
+              handleChangePetInfos={handleChangePetInfos}
               currentIdx={idx}
               setPetInfos={setPetInfos}
             />
