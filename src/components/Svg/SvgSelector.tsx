@@ -29,6 +29,7 @@ import FilledStar from "@/assets/svg/Star_fill.svg?react";
 import Star from "@/assets/svg/Star.svg?react";
 import Menu from "@/assets/svg/Menu.svg?react";
 import SendButton from "@/assets/svg/Send_button.svg?react";
+import FilledRemove from "@/assets/svg/Remove_fill.svg?react";
 import { SvgIcon } from "@/models";
 
 type Props = {
@@ -131,6 +132,8 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       );
     case "sendButton":
       return <SendButton width={width} height={height} />;
+    case "filledRemove":
+      return <FilledRemove width={width} height={height} />;
     default:
       return <div />;
   }
