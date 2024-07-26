@@ -73,7 +73,7 @@ export interface SignupSchema {
     mbti: string;
     img_delete_flag: "N";
   };
-  petProfile: {
+  petProfile?: {
     pet_id: null;
     pet_name: string; // max-length 10
     pet_gender: Gender;
