@@ -25,7 +25,7 @@ export default function PetInfoStep({
     (
       targetPetInfo: PetInfo,
       key: keyof PetInfo,
-      value: string | number | number[],
+      value: string | number | number[] | File,
     ) => {
       return { ...targetPetInfo, [key]: value };
     },
@@ -36,7 +36,7 @@ export default function PetInfoStep({
     (
       targetIdx: number,
       key: keyof PetInfo,
-      value: string | number | number[],
+      value: string | number | number[] | File,
     ) => {
       setPetInfos((prevPetInfos) => {
         const newPetInfo = getNewPetInfo(prevPetInfos[targetIdx], key, value);

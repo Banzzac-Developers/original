@@ -63,7 +63,7 @@ export const encodeSignupSchema = (
         pet_personality,
         activity_rate,
         img_delete_flag: "N" as const,
-        target_img_name: petImage ? petImage : null,
+        target_img_name: petImage ? petImage.name : null,
       };
     },
   );
