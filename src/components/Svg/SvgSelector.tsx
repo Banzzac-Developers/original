@@ -31,6 +31,7 @@ import Menu from "@/assets/svg/Menu.svg?react";
 import SendButton from "@/assets/svg/Send_button.svg?react";
 import FilledRemove from "@/assets/svg/Remove_fill.svg?react";
 import AddComment from "@/assets/svg/AddComment.svg?react";
+import TailLessRightArrow from "@/assets/svg/Tail_Less_Arrow_Right.svg?react";
 import { SvgIcon } from "@/models";
 
 type Props = {
@@ -137,6 +138,10 @@ export default function SvgSelector({ svg, width, height, stroke }: Props) {
       return <FilledRemove width={width} height={height} />;
     case "addComment":
       return <AddComment width={width} height={height} stroke={stroke} />;
+    case "tailLessArrowRight":
+      return (
+        <TailLessRightArrow width={width} height={height} stroke={stroke} />
+      );
     default:
       return <div />;
   }
