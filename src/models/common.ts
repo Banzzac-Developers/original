@@ -1,6 +1,7 @@
 export type HeaderIcon = "search" | "friendAdd" | "setting";
 
 export type SvgIcon =
+  | "tailLessArrowRight"
   | "chat"
   | "feed"
   | "friends"
