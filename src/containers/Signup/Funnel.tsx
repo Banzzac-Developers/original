@@ -15,10 +15,12 @@ import API from "@/api/api";
 import URLs from "@/api/urls";
 import { encodeSignupSchema } from "@/utils";
 import { z } from "zod";
+import useToast from "@/hooks/common/useToast";
 
 type Step = "user" | "profile" | "pet" | "final";
 
 export default function SignupFunnel() {
+  const { openToast } = useToast();
   const [step, setStep] = useState<Step>("user");
   const [userInfo, setUserInfo] = useState<UserInfo>(defaultUserInfo);
   const [profileInfo, setProfileInfo] = useState<ProfileInfo>({
@@ -86,11 +88,15 @@ export default function SignupFunnel() {
 
   const handleNextStep = useCallback(
     (key: Step) => {
-      validate(key);
-      setStep(key);
-      scrollTop();
+      try {
+        validate(key);
+        setStep(key);
+        scrollTop();
+      } catch (e) {
+        openToast("input 입력하셈");
+      }
     },
-    [validate],
+    [openToast, validate],
   );
 
   const handleBeforeStep = useCallback((key: Step) => {
