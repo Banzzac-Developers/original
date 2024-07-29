@@ -13,5 +13,12 @@ const config: StorybookConfig = {
     name: "@storybook/react-vite",
     options: {},
   },
+  previewHead: (head) => `
+  ${head}
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/reset-css@5.0.2/reset.min.css"
+/>
+`,
 };
 export default config;
