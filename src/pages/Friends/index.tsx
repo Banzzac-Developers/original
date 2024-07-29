@@ -12,36 +12,44 @@ import { useRecoilValue } from "recoil";
  * 1. 마이 프로필을 만들 것
  */
 
+export default function Friends() {
+  useFriendList();
+  useProfile();
+  const friendList = useRecoilValue(frinedListState);
+  const myProfile = useRecoilValue(myProfileState);
+  const petProfiles = useRecoilValue(myPetProfileState);
 
-export default function Friends(){
-    useFriendList();
-    useProfile();
-    const friendList = useRecoilValue(frinedListState);
-    const myProfile = useRecoilValue(myProfileState);
-    const petProfiles = useRecoilValue(myPetProfileState);
-    
-    return (
+  return (
     <>
-        <SqueareHeader title="친구" headerIcons={[
-            {
-                icon : "search",
-                onClick:()=>{}
-            },
-            {
-                icon : "friendAdd",
-                onClick:()=>{}
-            },
-            {
-                icon : "setting",
-                onClick:()=>{}
-            },
-        ]} 
+      <SqueareHeader
+        title="친구"
+        headerIcons={[
+          {
+            icon: "search",
+            onClick: () => {},
+          },
+          {
+            icon: "friendAdd",
+            onClick: () => {},
+          },
+          {
+            icon: "setting",
+            onClick: () => {},
+          },
+        ]}
+      />
+      {myProfile && petProfiles && (
+        <ProfileCard
+          introduction={myProfile.introduction}
+          nick_name={myProfile.nick_name}
+          profile_img={myProfile.profile_img.url}
+          pet_nick_name={petProfiles[0].pet_nick_name}
+          pet_profile_img={petProfiles[0].pet_profile_img.url}
         />
-        { myProfile&&petProfiles&&<ProfileCard introduction={myProfile.introduction} nick_name={myProfile.nick_name} profile_img={myProfile.profile_img.url} pet_nick_name={petProfiles[0].pet_nick_name} pet_profile_img={petProfiles[0].pet_profile_img.url}/> }
+      )}
 
-        <DividerDefault width="100%"/>
-        <FrinedsList friendList={friendList}/>
+      <DividerDefault width="100%" />
+      <FrinedsList friendList={friendList} />
     </>
-    )
-
+  );
 }
