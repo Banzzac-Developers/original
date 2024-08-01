@@ -1,8 +1,8 @@
 import { CSSObject } from "@emotion/react";
-import ButtonSelect from "../ButtonSelect";
 import TextInput from "../TextInput";
 import Seperator from "@/components/Seperator";
 import styled from "@emotion/styled";
+import LabelledButtonSelect from "../LabelledButtonSelect";
 
 interface Props {
   buttonList: string[];
@@ -47,7 +47,7 @@ export default function SelectWithCustomInput({
 
   return (
     <Container>
-      <ButtonSelect
+      <LabelledButtonSelect
         onChangeButton={(idx) => onChange(idx as number)}
         value={isNumber(value)}
         gridStyle={gridStyle}

@@ -1,4 +1,3 @@
-import ButtonSelect from "@/components/Input/ButtonSelect";
 import ImageInput from "@/components/Input/ImageInput";
 import Seperator from "@/components/Seperator";
 import styled from "@emotion/styled";
@@ -16,6 +15,7 @@ import {
 import TextInput from "@/components/Input/TextInput";
 import SelectWithCustomInput from "@/components/Input/SelectWithCustomInput";
 import SvgSelector from "@/components/Svg/SvgSelector";
+import LabelledButtonSelect from "@/components/Input/LabelledButtonSelect";
 
 interface Props {
   petInfo: PetInfo;
@@ -169,7 +169,7 @@ export default function PetInfoForm({
         maxSelection={6}
       />
       <Seperator height={24} />
-      <ButtonSelect
+      <LabelledButtonSelect
         gridStyle={{ gridTemplateColumns: "repeat(3, 1fr)", gap: "10px" }}
         label="활동량"
         buttonList={PET_ACTIVITY.map((v) => v.name)}
@@ -210,7 +210,7 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const ButtonSelection = styled(ButtonSelect)`
+const ButtonSelection = styled(LabelledButtonSelect)`
   width: 100%;
 `;
 
