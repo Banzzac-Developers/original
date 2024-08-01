@@ -1,5 +1,5 @@
 import { CSSObject } from "@emotion/react";
-import TextInput from "../TextInput";
+import TextInput from "@/components/Input/TextInput";
 import Seperator from "@/components/Seperator";
 import styled from "@emotion/styled";
 import LabelledButtonSelect from "../LabelledButtonSelect";
@@ -73,7 +73,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const StyledInput = styled(TextInput.Input)`
+const StyledInput = styled(TextInput)`
   font-size: 16px;
   padding: 3px;
 `;
