@@ -1,5 +1,5 @@
 import SquareButton from "@/components/Button/SquareButton";
-import ButtonSelect from "@/components/Input/ButtonSelect";
+import LabelledButtonSelect from "@/components/Input/LabelledButtonSelect";
 import TextInput from "@/components/Input/TextInput";
 import Seperator from "@/components/Seperator";
 import { GENDER } from "@/constants";
@@ -59,7 +59,7 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
           />
         </InputWrapper>
         <Seperator height={28} />
-        <ButtonSelect
+        <LabelledButtonSelect
           label="성별"
           buttonList={GENDER.map((v) => v.name)}
           multipleSelection={false}
