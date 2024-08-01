@@ -10,7 +10,7 @@ export default function LabelledButtonSelect({
 }: Omit<LabelProps, "children"> & { label: string } & ButtonSelectProps) {
   return (
     <div>
-      <Label {...props}>{label}</Label>
+      <Label htmlFor={props.htmlFor}>{label}</Label>
       <Seperator height={14} />
       <ButtonSelect {...props} />
     </div>
