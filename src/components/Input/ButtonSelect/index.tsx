@@ -1,8 +1,7 @@
 import RoundButton from "@/components/Button/RoundButton";
 import styled, { CSSObject } from "@emotion/styled";
 
-type Props = {
-  label: string;
+export type ButtonSelectProps = {
   buttonList: string[];
   multipleSelection: boolean;
   maxSelection: number;
@@ -14,14 +13,13 @@ type Props = {
 
 export default function ButtonSelect({
   className,
-  label,
   buttonList,
   gridStyle = { gridTemplateColumns: "repeat(2, 1fr)", gap: "20px" },
   multipleSelection,
   maxSelection,
   value,
   onChangeButton,
-}: Props) {
+}: ButtonSelectProps) {
   const handleClick = (idx: number) => {
     // 중복 선택 불가능
     if (!multipleSelection && typeof value === "number") {
@@ -54,38 +52,25 @@ export default function ButtonSelect({
 
   return (
     <Container gridStyle={gridStyle} className={className}>
-      <Label>{label}</Label>
-      <div style={{ height: "14px" }} />
-      <ul>
-        {buttonList.map((button, idx) => (
-          <li key={button}>
-            <RoundButton
-              active={isActive(idx)}
-              onClick={() => handleClick(idx)}
-              title={button}
-              fill={false}
-              backgroundColor={isActive(idx) ? "#212121" : "#757575"}
-            />
-          </li>
-        ))}
-      </ul>
+      {buttonList.map((button, idx) => (
+        <li key={button}>
+          <RoundButton
+            active={isActive(idx)}
+            onClick={() => handleClick(idx)}
+            title={button}
+            fill={false}
+            backgroundColor={isActive(idx) ? "#212121" : "#757575"}
+          />
+        </li>
+      ))}
     </Container>
   );
 }
 
-const Container = styled.div<{ gridStyle: CSSObject }>`
-  ul {
-    display: grid;
-    ${({ gridStyle }) => gridStyle}
-  }
-  ul li {
+const Container = styled.ul<{ gridStyle: CSSObject }>`
+  display: grid;
+  ${({ gridStyle }) => gridStyle};
+  li {
     width: 100%;
   }
-`;
-
-const Label = styled.div`
-  font-size: 16px;
-  font-weight: 700;
-  color: #000;
-  line-height: 24px;
 `;
