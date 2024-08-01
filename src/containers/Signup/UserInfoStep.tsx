@@ -1,6 +1,7 @@
 import SquareButton from "@/components/Button/SquareButton";
 import LabelledButtonSelect from "@/components/Input/LabelledButtonSelect";
 import TextInput from "@/components/Input/TextInput";
+import Label from "@/components/Label";
 import Seperator from "@/components/Seperator";
 import { GENDER } from "@/constants";
 import { UserInfo } from "@/models/signup";
@@ -33,8 +34,8 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
         <Title>회원가입</Title>
         <Seperator height={50} />
         <InputWrapper>
-          <TextInput.Label id="email">이메일</TextInput.Label>
-          <TextInput.Input
+          <Label htmlFor="email">이메일</Label>
+          <TextInput
             inputMode="email"
             type="text"
             onChange={(e) => handleChangeInfo("email", e.target.value)}
@@ -46,8 +47,8 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
         </InputWrapper>
         <Seperator height={28} />
         <InputWrapper>
-          <TextInput.Label id="nickname">닉네임</TextInput.Label>
-          <TextInput.Input
+          <Label htmlFor="nickname">닉네임</Label>
+          <TextInput
             inputMode="text"
             maxLength={15}
             type="text"
@@ -69,8 +70,8 @@ export default function UserInfoStep({ onNext, setUserInfo, userInfo }: Props) {
         />
         <Seperator height={28} />
         <InputWrapper>
-          <TextInput.Label id="age">나이</TextInput.Label>
-          <TextInput.Input
+          <Label id="age">나이</Label>
+          <TextInput
             inputMode="numeric"
             maxLength={4}
             type="text"
