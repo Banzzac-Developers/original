@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
-interface Props extends React.LabelHTMLAttributes<HTMLLabelElement> {
+export interface LabelProps
+  extends React.LabelHTMLAttributes<HTMLLabelElement> {
   children: string;
   fontSize?: number;
   color?: string;
@@ -15,7 +16,7 @@ export default function Label({
   fontWeight = 700,
   lineHeight = 24,
   ...props
-}: Props) {
+}: LabelProps) {
   return (
     <StyledLabel
       fontSize={fontSize}
