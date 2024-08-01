@@ -1,7 +1,7 @@
 import SquareButton from "@/components/Button/SquareButton";
 import RoundHeader from "@/components/Header/RoundHeader";
-import ButtonSelect from "@/components/Input/ButtonSelect";
 import ImageInput from "@/components/Input/ImageInput";
+import LabelledButtonSelect from "@/components/Input/LabelledButtonSelect";
 import Seperator from "@/components/Seperator";
 import { MBTI, WALKING_STYLE } from "@/constants";
 import { ProfileInfo } from "@/models/signup";
@@ -96,9 +96,8 @@ const Container = styled.div`
   gap: 50px;
 `;
 
-const ButtonSelection = styled(ButtonSelect)`
+const ButtonSelection = styled(LabelledButtonSelect)`
   width: 100%;
-  /* border: 1px solid red; */
 `;
 
 const ButtonContainer = styled.div`
