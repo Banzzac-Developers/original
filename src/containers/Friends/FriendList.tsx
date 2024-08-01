@@ -75,12 +75,11 @@ function CanNotCallFriendList() {
 }
 
 //🔻🔻🔻Stlyed Components🔻🔻🔻
-const Container = styled.ul`
-  padding: 0 20px 0 24px;
-`;
+const Container = styled.ul``;
 
 /* 소제목 DIV 태그 ex) 친구 10명          SVG */
 const SubTitle = styled.div<{ isOpen: boolean }>`
+  padding: 0 20px 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -103,7 +102,6 @@ const StyledText = styled(Text)`
 
 const Wrapper = styled.ul`
   li {
-    padding: 8px 0;
     /* 네비게이터 Bar가 마지막 Index를 가릴 경우를 생각해서 Last-Child Padding 줌 */
     &:last-child {
       padding-bottom: 100px;
