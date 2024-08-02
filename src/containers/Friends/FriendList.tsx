@@ -11,11 +11,22 @@ import SvgSelector from "@/components/Svg/SvgSelector";
 import { useState } from "react";
 import { css, keyframes } from "@emotion/react";
 
+type NothingProps = {
+  msg?: string;
+};
 type Props = {
   friendList?: UserInfoList[];
+  nothingMsg: string;
+  searchable?: boolean;
+  searchWord?: string;
 };
 
-export const FrinedsList = ({ friendList }: Props) => {
+export const FrinedsList = ({
+  friendList,
+  nothingMsg,
+  searchable = false,
+  searchWord = "",
+}: Props) => {
   //친구 목록 여닫기 State
   const [openFriendList, setOpenFriendList] = useState(true);
 
@@ -43,25 +54,29 @@ export const FrinedsList = ({ friendList }: Props) => {
       {friendList !== undefined &&
         openFriendList &&
         friendList.length !== 0 && (
-          <Wrapper>
+          <Wrapper searchable={searchable}>
             {friendList.map((friend, idx) => (
               <li key={idx}>
-                <FriendCard {...friend} />
+                <FriendCard
+                  {...friend}
+                  searchable={searchable}
+                  searchWord={searchWord}
+                />
               </li>
             ))}
           </Wrapper>
         )}
       {/* 친구가 없을 경우 */}
-      {friendList?.length === 0 && <NothingFriend />}
+      {friendList?.length === 0 && <NothingFriend msg={nothingMsg} />}
       {/* 친구 목록을 불러오지 못할 경우 */}
       {!friendList && <CanNotCallFriendList />}
     </Container>
   );
 };
 //🌻🌻🌻 Components 🌻🌻🌻
-function NothingFriend() {
+export function NothingFriend({ msg }: NothingProps) {
   //친구가 없을 경우
-  return <div>친구가 없습니다. 친구를 추가하여 반짝을 더욱 더 빛내보세요.</div>;
+  return <div>{msg}</div>;
 }
 
 function CanNotCallFriendList() {
@@ -100,11 +115,12 @@ const StyledText = styled(Text)`
   padding: 8px 0;
 `;
 
-const Wrapper = styled.ul`
+const Wrapper = styled.ul<{ searchable: boolean }>`
   li {
-    /* 네비게이터 Bar가 마지막 Index를 가릴 경우를 생각해서 Last-Child Padding 줌 */
+    /* 네비게이터 Bar가 마지막 Index를 가릴 경우를 생각해서 Last-Child Padding 줌
+    네비게이터가 없을 경우 searchable = true 임.*/
     &:last-child {
-      padding-bottom: 100px;
+      padding-bottom: ${({ searchable }) => (searchable ? "0px" : "100px")};
     }
   }
 `;
