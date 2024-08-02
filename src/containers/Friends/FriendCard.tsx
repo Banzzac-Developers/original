@@ -4,13 +4,20 @@ import styled from "@emotion/styled";
 import { isTherePetImage, isThereUserImage } from "@/utils/ImageInit";
 import { useEffect, useRef, useState } from "react";
 
+type Props = UserInfoList & {
+  searchable?: boolean;
+  searchWord?: string;
+};
+
 export default function FriendCard({
   nick_name,
   pet_img_url,
   pet_name,
   profile_img_url,
   user_id,
-}: UserInfoList) {
+  searchWord = "",
+  searchable = false,
+}: Props) {
   // 이미지 없을 경우 기본 이미지로 초기화
   const userImg = isThereUserImage(profile_img_url);
   const petImg = isTherePetImage(pet_img_url);
@@ -72,10 +79,26 @@ export default function FriendCard({
           />
         </ProfileImg>
         <Infomations>
-          <Namse>
-            {nick_name}{" "}
-            {pet_name === "" || pet_name === undefined ? "" : `| ${pet_name}`}
-          </Namse>
+          {/* 검색이 가능할 경우 */}
+          {searchable && (
+            <Namse>
+              {searchTextBold(nick_name, searchWord)}{" "}
+              {pet_name === "" || pet_name === undefined ? (
+                ""
+              ) : (
+                <>
+                  {"| "} {searchTextBold(pet_name, searchWord)}{" "}
+                </>
+              )}
+            </Namse>
+          )}
+          {/* 검색이 불가능할 경우 */}
+          {!searchable && (
+            <Namse>
+              {nick_name}{" "}
+              {pet_name === "" || pet_name === undefined ? "" : `| ${pet_name}`}
+            </Namse>
+          )}
           <StatusMsg>상태 메세지</StatusMsg>
         </Infomations>
       </Container>
@@ -125,9 +148,14 @@ export const ProfileImg = styled.div<{ width?: string }>`
 export const Infomations = styled.div``;
 
 export const Namse = styled.h4`
+  display: flex;
+  align-items: center;
   font-size: 14px;
   font-weight: 550;
   line-height: 22px;
+  strong {
+    font-size: 18px;
+  }
 `;
 
 export const StatusMsg = styled.p`
@@ -165,3 +193,19 @@ const Actions = styled.div<{ isSwiped: boolean; height: number }>`
     }
   }
 `;
+
+// 검색 문자와 같은 문자열일 경우 Bold 처리 함수
+function searchTextBold(name: string, word: string) {
+  if (word !== "") {
+    const splits = name.split(new RegExp(`(${word})`, "gi"));
+    return splits.map((sameWord, idx) =>
+      sameWord.toLowerCase() === word.toLowerCase() ? (
+        <strong key={idx}>{sameWord}</strong>
+      ) : (
+        sameWord
+      ),
+    );
+  } else {
+    return <>{name}</>;
+  }
+}
