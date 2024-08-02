@@ -30,14 +30,14 @@ export const FrinedsList = ({ friendList }: Props) => {
         <StyledText {...FontStyle(14, 700, 20, "#9e9e9e")}>
           {`친구 ${friendList?.length}`}
         </StyledText>
-        <span>
+        <button>
           <SvgSelector
             height={14}
             width={14}
             stroke="#9e9e9e"
             svg="tailLessArrowRight"
           />
-        </span>
+        </button>
       </SubTitle>
       {/* 정상적으로 친구 목록을 불러올 경우*/}
       {friendList !== undefined &&
@@ -54,7 +54,7 @@ export const FrinedsList = ({ friendList }: Props) => {
       {/* 친구가 없을 경우 */}
       {friendList?.length === 0 && <NothingFriend />}
       {/* 친구 목록을 불러오지 못할 경우 */}
-      {friendList === undefined && <CanNotCallFriendList />}
+      {!friendList && <CanNotCallFriendList />}
     </Container>
   );
 };
@@ -75,23 +75,22 @@ function CanNotCallFriendList() {
 }
 
 //🔻🔻🔻Stlyed Components🔻🔻🔻
-const Container = styled.ul`
-  padding: 0 20px 0 24px;
-`;
+const Container = styled.ul``;
 
 /* 소제목 DIV 태그 ex) 친구 10명          SVG */
 const SubTitle = styled.div<{ isOpen: boolean }>`
+  padding: 0 20px 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  span {
+  button {
     animation: ${({ isOpen }) =>
       isOpen
         ? css`
-            ${svgRightAnimation} 0.5s ease-in forwards
+            ${svgRightAnimation} 0.2s ease-in forwards
           `
         : css`
-            ${svgDownAnimation} 0.5s ease-in forwards
+            ${svgDownAnimation} 0.2s ease-in forwards
           `};
   }
 `;
@@ -103,7 +102,6 @@ const StyledText = styled(Text)`
 
 const Wrapper = styled.ul`
   li {
-    padding: 8px 0;
     /* 네비게이터 Bar가 마지막 Index를 가릴 경우를 생각해서 Last-Child Padding 줌 */
     &:last-child {
       padding-bottom: 100px;
