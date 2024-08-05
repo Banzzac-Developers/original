@@ -1,4 +1,3 @@
-import TextInput from "@/components/Input/TextInput";
 import SvgSelector from "@/components/Svg/SvgSelector";
 import useModal from "@/hooks/common/useModal";
 import { frinedListState } from "@/recoil/friends";
@@ -7,6 +6,7 @@ import { ChangeEvent, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { FrinedsList } from "./FriendList";
 import { UserInfoList } from "@/models/friends";
+import RoundInput from "@/components/Input/RoundInput/RoundInput";
 
 //친구가 없을 때 보여줄 메세지
 const nothingFriendMsg = "검색된 친구가 없습니다.";
@@ -40,11 +40,12 @@ export default function FriendSearch() {
     <Container>
       <Header>
         <SvgSelector height={18} width={18} stroke="#212121" svg="search" />
-        <TextInput
+        <RoundInput
           type="text"
-          onChange={(e) => {
-            handleInput(e);
-          }}
+          width="80%"
+          height={36}
+          placeholder="검색"
+          onChange={handleInput}
         />
         <ModalCancleButton onClick={removeCurrentModal}>취소</ModalCancleButton>
       </Header>
