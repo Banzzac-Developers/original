@@ -3,6 +3,7 @@ import { UserInfoList } from "@/models/friends";
 import styled from "@emotion/styled";
 import { isTherePetImage, isThereUserImage } from "@/utils/ImageInit";
 import { useEffect, useRef, useState } from "react";
+import useAddBlockFriend from "@/hooks/friends/useBlockFriend";
 
 type Props = UserInfoList & {
   searchable?: boolean;
@@ -31,6 +32,8 @@ export default function FriendCard({
     }
   }, []);
 
+  //차단 및 삭제 버튼,
+  const { addBlockFriend } = useAddBlockFriend(user_id);
   //Swiper 관련
   const [isSwiped, setIsSwiped] = useState(false);
   const startX = useRef(0);
@@ -110,13 +113,7 @@ export default function FriendCard({
         >
           삭제
         </button>
-        <button
-          onClick={() => {
-            console.log(user_id + "차단");
-          }}
-        >
-          차단
-        </button>
+        <button onClick={addBlockFriend}>차단</button>
       </Actions>
     </Wrapper>
   );
