@@ -6,7 +6,7 @@ import { ChangeEvent, useState } from "react";
 import { useRecoilValue } from "recoil";
 import { FrinedsList } from "./FriendList";
 import { UserInfoList } from "@/models/friends";
-import RoundInput from "@/components/Input/RoundInput/RoundInput";
+import RoundInput from "@/components/Input/SearchBar";
 
 //친구가 없을 때 보여줄 메세지
 const nothingFriendMsg = "검색된 친구가 없습니다.";
