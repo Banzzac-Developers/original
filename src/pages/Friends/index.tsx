@@ -1,6 +1,7 @@
 import DividerDefault from "@/components/Divider/Divider";
 import { FrinedsList } from "@/containers/Friends/FriendList";
 import FriendSearch from "@/containers/Friends/FriendSearch";
+import FriendSettingMenu from "@/containers/Friends/FriendSettingMenu";
 import ProfileCard from "@/containers/Profile/ProfileCard";
 import useModal from "@/hooks/common/useModal";
 import useFriendList from "@/hooks/friends/useFriendList";
@@ -8,11 +9,13 @@ import useProfile from "@/hooks/profile/useProfile";
 import SqueareHeader from "@/layouts/SquereHeader";
 import { frinedListState } from "@/recoil/friends";
 import { myPetProfileState, myProfileState } from "@/recoil/profile";
+import { useState } from "react";
 import { useRecoilValue } from "recoil";
 
 export default function Friends() {
   //모달 설정
   const { addModal } = useModal();
+  const [openSettingMenu, setOpenSettingMenu] = useState(false);
   //Recoil 설정
   useFriendList();
   useProfile();
@@ -46,10 +49,11 @@ export default function Friends() {
           },
           {
             icon: "setting",
-            onClick: () => {},
+            onClick: () => setOpenSettingMenu((prev) => !prev),
           },
         ]}
       />
+      {openSettingMenu && <FriendSettingMenu />}
       {myProfile && petProfiles && (
         <ProfileCard
           introduction={myProfile.introduction}
