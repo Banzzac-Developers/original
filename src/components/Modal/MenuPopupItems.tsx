@@ -12,8 +12,8 @@ type Props = {
 export default function MenuPopupItems({
   title,
   svg,
-  height = 10,
-  width = 10,
+  height = 24,
+  width = 24,
 }: Props) {
   return (
     <Container>
@@ -24,10 +24,10 @@ export default function MenuPopupItems({
 }
 
 const Container = styled.div`
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 10px;
 `;
 
 const Title = styled.h5`
