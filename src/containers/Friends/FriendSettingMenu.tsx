@@ -1,7 +1,18 @@
 import MenuPopup from "@/components/Modal/MenuPopup";
 import MenuPopupItems from "@/components/Modal/MenuPopupItems";
+import useModal from "@/hooks/common/useModal";
 
 export default function FriendSettingMenu() {
+  const { addModal } = useModal();
+
+  function handleBlockFriendScreen() {
+    addModal({
+      type: "fullscreen",
+      props: {
+        contents: <div>차단한 친구 목록 아직 컴포넌트 안만듬</div>,
+      },
+    });
+  }
   return (
     <MenuPopup
       pos={{ right: 16, top: 40 }}
@@ -20,9 +31,7 @@ export default function FriendSettingMenu() {
         },
         {
           menu: <MenuPopupItems svg="userClose" title="차단 친구" />,
-          handleClick: () => {
-            console.log("차단한 친구");
-          },
+          handleClick: handleBlockFriendScreen,
         },
       ]}
     ></MenuPopup>
