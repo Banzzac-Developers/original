@@ -20,7 +20,7 @@ export default function MenuPopup({ menuList, pos, className }: Props) {
   return (
     <Container pos={pos} className={className}>
       {menuList.map(({ menu, handleClick }, idx) => (
-        <React.Fragment key={`${menu}`}>
+        <React.Fragment key={`${menu}-${idx}`}>
           <li>
             <button onClick={handleClick}>{menu}</button>
           </li>
