@@ -47,11 +47,13 @@ export default function FriendCard({
     <Wrapper>
       <Container
         layout
+        initial={false}
         dragConstraints={{ left: -150, right: 0 }}
         dragElastic={0}
         drag="x"
         style={{ x }}
         whileDrag={{ cursor: "grabbing" }}
+        transition={{ duration: 0 }}
         onDragEnd={handleDragEnd}
       >
         <ProfileImg>
