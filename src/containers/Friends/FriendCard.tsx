@@ -10,6 +10,7 @@ import {
   useMotionValue,
   useTransform,
 } from "framer-motion";
+import useRemoveFriend from "@/hooks/friends/useRemoveFriend";
 
 type Props = UserInfoList & {
   searchable?: boolean;
@@ -31,7 +32,7 @@ export default function FriendCard({
 
   //차단 및 삭제 버튼,
   const { addBlockFriend } = useAddBlockFriend(user_id);
-
+  const { removeFriend } = useRemoveFriend(user_id);
   // framer-motion 적용
   const x = useMotionValue(0);
   const buttonWidth = useTransform(x, [-150, 0], [75, 0]);
@@ -96,9 +97,7 @@ export default function FriendCard({
           layout
           initial={{ width: 0 }}
           style={{ x, width: buttonWidth }}
-          onClick={() => {
-            console.log(user_id + "삭제");
-          }}
+          onClick={removeFriend}
         >
           삭제
         </ActionButton>
