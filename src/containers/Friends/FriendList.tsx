@@ -10,6 +10,7 @@ import FriendCard from "./FriendCard";
 import SvgSelector from "@/components/Svg/SvgSelector";
 import { useState } from "react";
 import { css, keyframes } from "@emotion/react";
+import { motion } from "framer-motion";
 
 type NothingProps = {
   msg?: string;
@@ -51,21 +52,26 @@ export const FrinedsList = ({
         </button>
       </SubTitle>
       {/* 정상적으로 친구 목록을 불러올 경우*/}
-      {friendList !== undefined &&
-        openFriendList &&
-        friendList.length !== 0 && (
-          <Wrapper searchable={searchable}>
-            {friendList.map((friend, idx) => (
-              <li key={idx}>
-                <FriendCard
-                  {...friend}
-                  searchable={searchable}
-                  searchWord={searchWord}
-                />
-              </li>
-            ))}
-          </Wrapper>
-        )}
+      {friendList && friendList.length !== 0 && (
+        <Wrapper
+          animate={{
+            height: openFriendList ? "auto" : 0,
+            opacity: openFriendList ? 1 : 0,
+          }}
+          transition={{ duration: 0.5, ease: "easeInOut" }}
+          searchable={searchable}
+        >
+          {friendList.map((friend, idx) => (
+            <li key={idx}>
+              <FriendCard
+                {...friend}
+                searchable={searchable}
+                searchWord={searchWord}
+              />
+            </li>
+          ))}
+        </Wrapper>
+      )}
       {/* 친구가 없을 경우 */}
       {friendList?.length === 0 && <NothingFriend msg={nothingMsg} />}
       {/* 친구 목록을 불러오지 못할 경우 */}
@@ -115,7 +121,8 @@ const StyledText = styled(Text)`
   padding: 8px 0;
 `;
 
-const Wrapper = styled.ul<{ searchable: boolean }>`
+const Wrapper = styled(motion.ul)<{ searchable: boolean }>`
+  overflow: hidden;
   li {
     /* 네비게이터 Bar가 마지막 Index를 가릴 경우를 생각해서 Last-Child Padding 줌
     네비게이터가 없을 경우 searchable = true 임.*/
