@@ -1,19 +1,24 @@
 import SvgSelector from "@/components/Svg/SvgSelector";
+import useModal from "@/hooks/common/useModal";
 import styled from "@emotion/styled";
 
 export default function BlockFriendList() {
+  const { removeCurrentModal } = useModal();
   return (
-    <Header>
-      <CancleBtn>
-        <SvgSelector
-          height={20}
-          stroke="#212121"
-          width={20}
-          svg="close"
-        ></SvgSelector>
-      </CancleBtn>
-      차단친구
-    </Header>
+    <>
+      <Header>
+        <CancleBtn onClick={removeCurrentModal}>
+          <SvgSelector
+            height={20}
+            stroke="#212121"
+            width={20}
+            svg="close"
+          ></SvgSelector>
+        </CancleBtn>
+        차단친구
+      </Header>
+      <Main>dsf</Main>
+    </>
   );
 }
 
@@ -31,3 +36,5 @@ const CancleBtn = styled.button`
   top: 10px;
   left: 16px;
 `;
+
+const Main = styled.main``;
