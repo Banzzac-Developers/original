@@ -1,3 +1,4 @@
+import { isTherePetImage, isThereUserImage } from "@/utils/ImageInit";
 import styled from "@emotion/styled";
 
 type Props = {
@@ -17,16 +18,19 @@ export const DoubleProfileImage = ({
   left = 0,
   borderColor = "white",
 }: Props) => {
+  // 이미지 없을 경우 기본 이미지로 초기화
+  const userImg = isThereUserImage(img);
+  const petImg = isTherePetImage(img2);
   return (
     <Container>
       <MemberImage
-        src={img}
+        src={userImg}
         size={size}
         border={border}
         borderColor={borderColor}
       />
       <DogImage
-        src={img2}
+        src={petImg}
         size={size}
         border={border}
         left={left}
