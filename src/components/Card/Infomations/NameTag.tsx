@@ -17,7 +17,7 @@ const Container = styled.h4`
   display: flex;
   align-items: center;
   font-size: 14px;
-  font-weight: 550;
+  font-weight: 500;
   line-height: 22px;
   strong {
     font-size: 18px;
