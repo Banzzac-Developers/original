@@ -1,6 +1,7 @@
 import MenuPopup from "@/components/Modal/MenuPopup";
 import MenuPopupItems from "@/components/Modal/MenuPopupItems";
 import useModal from "@/hooks/common/useModal";
+import BlockFriendList from "./BlockFriendList";
 
 export default function FriendSettingMenu() {
   const { addModal } = useModal();
@@ -9,7 +10,7 @@ export default function FriendSettingMenu() {
     addModal({
       type: "fullscreen",
       props: {
-        contents: <div>차단한 친구 목록 아직 컴포넌트 안만듬</div>,
+        contents: <BlockFriendList />,
       },
     });
   }

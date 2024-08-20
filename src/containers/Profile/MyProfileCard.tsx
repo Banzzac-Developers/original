@@ -12,7 +12,7 @@ type Props = {
   pet_profile_img?: string;
 };
 
-export default function ProfileCard({
+export default function MyProfileCard({
   nick_name,
   profile_img,
   introduction,
