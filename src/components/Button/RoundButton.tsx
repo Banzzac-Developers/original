@@ -39,7 +39,6 @@ const StyledButton = styled.button<{
   width: inherit;
   display: flex;
   padding: 9px;
-  height: 42px;
   font-size: 16px;
   font-weight: 700;
   justify-content: center;
