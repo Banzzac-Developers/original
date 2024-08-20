@@ -52,10 +52,11 @@ export const SingleProfileImage = ({
   img,
   borderColor,
 }: Props2) => {
+  const userImg = isThereUserImage(img);
   return (
     <Container>
       <MemberImage
-        src={img}
+        src={userImg}
         size={size}
         border={border}
         borderColor={borderColor}
