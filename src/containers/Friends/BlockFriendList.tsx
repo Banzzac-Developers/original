@@ -1,3 +1,5 @@
+import CardContainer, { Card } from "@/components/Card";
+import DividerDefault from "@/components/Divider/Divider";
 import SvgSelector from "@/components/Svg/SvgSelector";
 import useModal from "@/hooks/common/useModal";
 import styled from "@emotion/styled";
@@ -17,7 +19,41 @@ export default function BlockFriendList() {
         </CancleBtn>
         차단친구
       </Header>
-      <Main>dsf</Main>
+      <DividerDefault width="100%" />
+      <Main>
+        <CardContainer justifyContent="space-between">
+          <Section>
+            <Card.ProfileImageContainer>
+              <Card.ProfileImage.DoubleProfileImage
+                key={"user_id"}
+                border={3}
+                size={48}
+                borderColor="#fff"
+                left={40}
+                img={""}
+                img2={""}
+              />
+            </Card.ProfileImageContainer>
+            <Card.InfomationsContainer>
+              <Card.Infomation.NameTag
+                nick_name="보호자 닉네임"
+                pet_name="강아지 이름"
+              />
+            </Card.InfomationsContainer>
+          </Section>
+          <Section>
+            <Card.RoundButton
+              title={"차단해제"}
+              fill={false}
+              backgroundColor="black"
+              active={true}
+              onClick={() => {
+                console.log("클릭함");
+              }}
+            />
+          </Section>
+        </CardContainer>
+      </Main>
     </>
   );
 }
@@ -38,3 +74,13 @@ const CancleBtn = styled.button`
 `;
 
 const Main = styled.main``;
+
+const Section = styled.section`
+  display: flex;
+  align-items: center;
+  button {
+    height: 24px;
+    padding: 13px 0px;
+    font-size: 14px;
+  }
+`;
