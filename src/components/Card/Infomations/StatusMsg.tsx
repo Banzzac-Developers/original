@@ -1,8 +1,7 @@
 import styled from "@emotion/styled";
-import { ReactNode } from "react";
 
 type Props = {
-  msg: ReactNode;
+  msg: string;
 };
 
 export default function StatusMessage({ msg }: Props) {
