@@ -10,7 +10,7 @@ type Props = {
   children: ReactNode;
 };
 
-export default function Infomations({ children }: Props) {
+export default function InfomationsContainer({ children }: Props) {
   return <Container>{children}</Container>;
 }
 
