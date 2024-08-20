@@ -1,7 +1,6 @@
 import { DoubleProfileImage } from "@/components/ProfileImage/ProfileImage";
 import { UserInfoList } from "@/models/friends";
 import styled from "@emotion/styled";
-import { isTherePetImage, isThereUserImage } from "@/utils/ImageInit";
 import useAddBlockFriend from "@/hooks/friends/useBlockFriend";
 import {
   animate,
@@ -26,10 +25,6 @@ export default function FriendCard({
   searchWord = "",
   searchable = false,
 }: Props) {
-  // 이미지 없을 경우 기본 이미지로 초기화
-  const userImg = isThereUserImage(profile_img_url);
-  const petImg = isTherePetImage(pet_img_url);
-
   //차단 및 삭제 버튼,
   const { addBlockFriend } = useAddBlockFriend(user_id);
   const { removeFriend } = useRemoveFriend(user_id);
@@ -64,8 +59,8 @@ export default function FriendCard({
             size={48}
             borderColor="#fff"
             left={40}
-            img={userImg}
-            img2={petImg}
+            img={pet_img_url}
+            img2={profile_img_url}
           />
         </ProfileImg>
         <Infomations>
