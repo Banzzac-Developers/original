@@ -2,7 +2,7 @@ import DividerDefault from "@/components/Divider/Divider";
 import { FrinedsList } from "@/containers/Friends/FriendList";
 import FriendSearch from "@/containers/Friends/FriendSearch";
 import FriendSettingMenu from "@/containers/Friends/FriendSettingMenu";
-import ProfileCard from "@/containers/Profile/ProfileCard";
+import MyProfileCard from "@/containers/Profile/MyProfileCard";
 import useModal from "@/hooks/common/useModal";
 import useFriendList from "@/hooks/friends/useFriendList";
 import useProfile from "@/hooks/profile/useProfile";
@@ -55,7 +55,7 @@ export default function Friends() {
       />
       {openSettingMenu && <FriendSettingMenu />}
       {myProfile && petProfiles && (
-        <ProfileCard
+        <MyProfileCard
           introduction={myProfile.introduction}
           nick_name={myProfile.nick_name}
           profile_img={myProfile.profile_img.url}

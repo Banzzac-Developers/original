@@ -11,25 +11,7 @@ export default [
     return HttpResponse.json({
       result: "SUCCESS",
       data: {
-        user_info_list: [
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-          FriendInfo,
-        ],
+        user_info_list: FriendInfos,
       },
       message: "친구 리스트 획득에 성공하였습니다.",
       error_code: null,
@@ -99,10 +81,40 @@ const SuccessFetchProfile = {
   error_code: null,
 };
 
-const FriendInfo = {
-  user_id: "3260305274",
-  nick_name: "후시구로 메구미",
-  profile_img_url: undefined,
-  pet_name: "안녕토끼",
-  pet_img_url: undefined,
-};
+const FriendInfos = [
+  {
+    user_id: "1",
+    nick_name: "괴수 8호",
+    profile_img_url: undefined,
+    pet_name: "카프카",
+    pet_img_url: undefined,
+  },
+  {
+    user_id: "2",
+    nick_name: "후시구로 메구미",
+    profile_img_url: undefined,
+    pet_name: "안녕토끼",
+    pet_img_url: undefined,
+  },
+  {
+    user_id: "3",
+    nick_name: "고죠 사토루",
+    profile_img_url: undefined,
+    pet_name: "안대",
+    pet_img_url: undefined,
+  },
+  {
+    user_id: "4",
+    nick_name: "루피",
+    profile_img_url: undefined,
+    pet_name: "고무고무열매",
+    pet_img_url: undefined,
+  },
+  {
+    user_id: "5",
+    nick_name: "언노운",
+    profile_img_url: undefined,
+    pet_name: "언디파인드",
+    pet_img_url: undefined,
+  },
+];
