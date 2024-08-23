@@ -2,10 +2,14 @@ import CardContainer, { Card } from "@/components/Card";
 import DividerDefault from "@/components/Divider/Divider";
 import SvgSelector from "@/components/Svg/SvgSelector";
 import useModal from "@/hooks/common/useModal";
+import useBlockFriendList from "@/hooks/friends/useBlockFriendList";
 import styled from "@emotion/styled";
+import { NothingFriend } from "./FriendList";
 
 export default function BlockFriendList() {
   const { removeCurrentModal } = useModal();
+  const { blockFriendList: blockList, setBlockFriendList } =
+    useBlockFriendList();
   return (
     <>
       <Header>
@@ -21,38 +25,48 @@ export default function BlockFriendList() {
       </Header>
       <DividerDefault width="100%" />
       <Main>
-        <CardContainer justifyContent="space-between">
-          <Section>
-            <Card.ProfileImageContainer>
-              <Card.ProfileImage.DoubleProfileImage
-                key={"user_id"}
-                border={3}
-                size={48}
-                borderColor="#fff"
-                left={40}
-                img={""}
-                img2={""}
-              />
-            </Card.ProfileImageContainer>
-            <Card.InfomationsContainer>
-              <Card.Infomation.NameTag
-                nick_name="보호자 닉네임"
-                pet_name="강아지 이름"
-              />
-            </Card.InfomationsContainer>
-          </Section>
-          <Section>
-            <Card.RoundButton
-              title={"차단해제"}
-              fill={false}
-              backgroundColor="black"
-              active={true}
-              onClick={() => {
-                console.log("클릭함");
-              }}
-            />
-          </Section>
-        </CardContainer>
+        {/*🟢🟢🟢Block Friend List가 있을 경우🟢🟢🟢*/}
+        {blockList &&
+          blockList.map((blockFriend, idx) => {
+            return (
+              <CardContainer justifyContent="space-between">
+                <Section>
+                  <Card.ProfileImageContainer>
+                    <Card.ProfileImage.DoubleProfileImage
+                      key={"user_id"}
+                      border={3}
+                      size={48}
+                      borderColor="#fff"
+                      left={40}
+                      img={blockFriend.profile_img_url}
+                      img2={blockFriend.pet_img_url}
+                    />
+                  </Card.ProfileImageContainer>
+                  <Card.InfomationsContainer>
+                    <Card.Infomation.NameTag
+                      nick_name={blockFriend.nick_name}
+                      pet_name={blockFriend.pet_name}
+                    />
+                  </Card.InfomationsContainer>
+                </Section>
+                <Section>
+                  <Card.RoundButton
+                    title={"차단해제"}
+                    fill={false}
+                    backgroundColor="black"
+                    active={true}
+                    onClick={() => {
+                      console.log(blockFriend.user_id + " 클릭함");
+                    }}
+                  />
+                </Section>
+              </CardContainer>
+            );
+          })}
+        {/*🔴🔴🔴 차단한 친구가 없을 경우 🔴🔴🔴*/}
+        {blockList?.length == 0 && (
+          <NothingFriend msg="차단한 친구가 없습니다." />
+        )}
       </Main>
     </>
   );
