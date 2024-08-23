@@ -17,6 +17,9 @@ export default [
       error_code: null,
     });
   }),
+  http.get(URLs.friends.fetchBlockFriendList, () =>
+    HttpResponse.json(blockFriendList),
+  ),
   // Profile ==> 내정보 가져오기
   http.get(URLs.profile.fetchProfile, () =>
     HttpResponse.json(SuccessFetchProfile),
@@ -118,3 +121,21 @@ const FriendInfos = [
     pet_img_url: undefined,
   },
 ];
+
+const blockFriendList = {
+  result: "SUCCESS",
+  data: {
+    user_info_list: [
+      {
+        user_id: "3260305274",
+        nick_name: "test3",
+        profile_img_url:
+          "https://img-data-bucket.s3.ap-northeast-2.amazonaws.com/human_profile/3260305274",
+        pet_name: "bababa",
+        pet_img_url: "aaaa",
+      },
+    ],
+  },
+  message: "차단 리스트 획득에 성공하였습니다.",
+  error_code: null,
+};
