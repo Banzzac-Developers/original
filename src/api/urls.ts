@@ -8,6 +8,7 @@ const URLs = {
   },
   friends: {
     fetchFriendList: "/api/profile/friend/list",
+    fetchBlockFriendList: "/api/profile/block/list",
     addBlockFriends: (user_id: string) => `/api/profile/block/${user_id}`,
     removeFriend: (user_id: string) => `/api/profile/friend/${user_id}`,
   },
