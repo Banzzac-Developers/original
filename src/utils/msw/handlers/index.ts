@@ -127,12 +127,32 @@ const blockFriendList = {
   data: {
     user_info_list: [
       {
-        user_id: "3260305274",
+        user_id: "3260305271",
+        nick_name: "test1",
+        profile_img_url: "",
+        pet_name: "세상에",
+        pet_img_url: "",
+      },
+      {
+        user_id: "3260305272",
+        nick_name: "test2",
+        profile_img_url: "",
+        pet_name: "나쁜",
+        pet_img_url: "",
+      },
+      {
+        user_id: "3260305273",
         nick_name: "test3",
-        profile_img_url:
-          "https://img-data-bucket.s3.ap-northeast-2.amazonaws.com/human_profile/3260305274",
-        pet_name: "bababa",
-        pet_img_url: "aaaa",
+        profile_img_url: "",
+        pet_name: "반려견은",
+        pet_img_url: "",
+      },
+      {
+        user_id: "3260305274",
+        nick_name: "test4",
+        profile_img_url: "",
+        pet_name: "없다",
+        pet_img_url: "",
       },
     ],
   },
