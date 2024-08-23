@@ -17,8 +17,17 @@ export default [
       error_code: null,
     });
   }),
+  //차단한 친구 목록
   http.get(URLs.friends.fetchBlockFriendList, () =>
     HttpResponse.json(blockFriendList),
+  ),
+  //친구 차단 해제
+  http.delete(
+    `${URLs.friends.removeBlockFriend(":userId")}`,
+    () =>
+      new HttpResponse(null, {
+        status: 200,
+      }),
   ),
   // Profile ==> 내정보 가져오기
   http.get(URLs.profile.fetchProfile, () =>
@@ -88,37 +97,37 @@ const FriendInfos = [
   {
     user_id: "1",
     nick_name: "괴수 8호",
-    profile_img_url: undefined,
+    profile_img_url: "",
     pet_name: "카프카",
-    pet_img_url: undefined,
+    pet_img_url: "",
   },
   {
     user_id: "2",
     nick_name: "후시구로 메구미",
-    profile_img_url: undefined,
+    profile_img_url: "",
     pet_name: "안녕토끼",
-    pet_img_url: undefined,
+    pet_img_url: "",
   },
   {
     user_id: "3",
     nick_name: "고죠 사토루",
-    profile_img_url: undefined,
+    profile_img_url: "",
     pet_name: "안대",
-    pet_img_url: undefined,
+    pet_img_url: "",
   },
   {
     user_id: "4",
     nick_name: "루피",
-    profile_img_url: undefined,
+    profile_img_url: "",
     pet_name: "고무고무열매",
-    pet_img_url: undefined,
+    pet_img_url: "",
   },
   {
     user_id: "5",
     nick_name: "언노운",
-    profile_img_url: undefined,
+    profile_img_url: "",
     pet_name: "언디파인드",
-    pet_img_url: undefined,
+    pet_img_url: "",
   },
 ];
 
