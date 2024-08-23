@@ -5,11 +5,16 @@ import useModal from "@/hooks/common/useModal";
 import useBlockFriendList from "@/hooks/friends/useBlockFriendList";
 import styled from "@emotion/styled";
 import { NothingFriend } from "./FriendList";
+import useUnblockFriend from "@/hooks/friends/useUnblockFriend";
+import { useSetRecoilState } from "recoil";
+import { frinedListState } from "@/recoil/friends";
 
 export default function BlockFriendList() {
   const { removeCurrentModal } = useModal();
   const { blockFriendList: blockList, setBlockFriendList } =
     useBlockFriendList();
+  const { removeBlockFriend } = useUnblockFriend();
+  const setFrinedList = useSetRecoilState(frinedListState);
   return (
     <>
       <Header>
@@ -29,7 +34,7 @@ export default function BlockFriendList() {
         {blockList &&
           blockList.map((blockFriend, idx) => {
             return (
-              <CardContainer justifyContent="space-between">
+              <CardContainer key={idx} justifyContent="space-between">
                 <Section>
                   <Card.ProfileImageContainer>
                     <Card.ProfileImage.DoubleProfileImage
@@ -56,7 +61,19 @@ export default function BlockFriendList() {
                     backgroundColor="black"
                     active={true}
                     onClick={() => {
-                      console.log(blockFriend.user_id + " 클릭함");
+                      // 차단 해제 성공시
+                      removeBlockFriend(blockFriend.user_id);
+
+                      // 차단 친구 목록에서 해당 친구 삭제
+
+                      setBlockFriendList((prev) =>
+                        prev?.filter(
+                          (value) => value.user_id !== blockFriend.user_id,
+                        ),
+                      );
+                      // 친구 목록에 차단 해제한 친구 추가
+
+                      setFrinedList((prev) => [...prev, blockFriend]);
                     }}
                   />
                 </Section>
