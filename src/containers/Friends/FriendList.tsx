@@ -127,7 +127,7 @@ const Wrapper = styled(motion.ul)<{ searchable: boolean }>`
     /* 네비게이터 Bar가 마지막 Index를 가릴 경우를 생각해서 Last-Child Padding 줌
     네비게이터가 없을 경우 searchable = true 임.*/
     &:last-child {
-      padding-bottom: ${({ searchable }) => (searchable ? "0px" : "100px")};
+      padding-bottom: ${({ searchable }) => (searchable ? "0px" : "75px")};
     }
   }
 `;
