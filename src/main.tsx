@@ -15,6 +15,7 @@ import { worker } from "./utils/msw/browser.ts";
 import Friends from "./pages/Friends/index.tsx";
 import Signup from "./pages/Signup";
 import Profile from "./pages/Profile/index.tsx";
+import Chattings from "./pages/Chattings/index.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,7 @@ const router = createBrowserRouter(
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/friends" element={<Friends />} />
+      <Route path="/chatting" element={<Chattings />} />
       <Route path="/profile" element={<Profile />} />
     </Route>,
   ),
